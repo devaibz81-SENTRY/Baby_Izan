@@ -24,3 +24,5 @@ convex/_generated/
 
 # Misc
 *.log
+
+.env.local

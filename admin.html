@@ -724,6 +724,8 @@
               onclick="this.select()" />
             <button onclick="copyWalkinLink()"
               style="background:var(--gold);color:white;border:none;border-radius:4px;padding:0.5rem 1rem;font-size:0.75rem;cursor:pointer;white-space:nowrap;font-weight:500;">Copy Link</button>
+            <button onclick="shareWalkinWhatsApp()"
+              style="background:#25D366;color:white;border:none;border-radius:4px;padding:0.5rem 1rem;font-size:0.75rem;cursor:pointer;white-space:nowrap;font-weight:500;">WhatsApp</button>
           </div>
         </div>
         <div class="stats-grid">
@@ -977,6 +979,12 @@
       } catch {
         return false;
       }
+    }
+
+    function shareWalkinWhatsApp() {
+      const link = 'https://baby-izan.vercel.app/rsvp.html';
+      const text = `Hi! You're invited to the baby shower of Izan Theodore Waight.\n\nOpen this link to RSVP:\n${link}\n\nJust fill in your name and details — no special invite needed.\n\nWith love,\nJess & Adriel`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     }
 
     function copyWalkinLink() {

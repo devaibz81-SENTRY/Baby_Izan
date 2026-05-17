@@ -99,19 +99,10 @@
   .script-name{font-family:'Dancing Script',cursive;font-size:clamp(3.5rem,14vw,9rem);font-weight:700;color:#fff;opacity:0;transform:translateY(20px) scale(.9);text-shadow:0 0 40px rgba(92,198,208,.5)}
   .script-name.reveal-in{animation:nameFade .9s .3s cubic-bezier(.22,1,.36,1) forwards}
   @keyframes nameFade{0%{opacity:0;transform:translateY(20px) scale(.8)}60%{opacity:1;transform:translateY(-5px) scale(1.05)}100%{opacity:1;transform:translateY(0) scale(1)}}
-  .sulley-hero-svg{width:min(180px,40vw);padding:6px;border-radius:18px;box-shadow:0 0 40px rgba(92,198,208,.5),0 0 80px rgba(123,79,163,.3);opacity:0;transform:scale(.6);background:rgba(255,255,255,.04);backdrop-filter:blur(4px)}
+  .sulley-hero-svg{width:min(180px,40vw);opacity:0;transform:scale(.6)}
   .sulley-hero-svg.reveal-in{animation:sulleyFade .9s .45s ease-out forwards}
   .sulley-hero-svg svg{display:block;width:100%;height:auto}
-  .sulley-hero-svg svg path{opacity:0;animation:svgPathFade .5s ease forwards}
-  .sulley-hero-svg.reveal-in svg path:nth-child(7n+1){animation-delay:.45s}
-  .sulley-hero-svg.reveal-in svg path:nth-child(7n+2){animation-delay:.52s}
-  .sulley-hero-svg.reveal-in svg path:nth-child(7n+3){animation-delay:.59s}
-  .sulley-hero-svg.reveal-in svg path:nth-child(7n+4){animation-delay:.66s}
-  .sulley-hero-svg.reveal-in svg path:nth-child(7n+5){animation-delay:.73s}
-  .sulley-hero-svg.reveal-in svg path:nth-child(7n+6){animation-delay:.80s}
-  .sulley-hero-svg.reveal-in svg path:nth-child(7n+7){animation-delay:.87s}
   @keyframes sulleyFade{0%{opacity:0;transform:scale(.85)}100%{opacity:1;transform:scale(1)}}
-  @keyframes svgPathFade{0%{opacity:0}100%{opacity:1}}
 
   .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.4rem;color:var(--sulley-blue);font-size:.8rem;letter-spacing:.15em;animation:bounce 1.5s infinite;white-space:nowrap;will-change:transform;opacity:0;transition:opacity .6s ease}
   .scroll-hint svg{width:22px;height:22px}
@@ -438,7 +429,7 @@
 <path fill-rule="evenodd"  fill="rgb(182, 128, 77)"
  d="M214.068,17.303 C217.087,20.114 218.341,23.676 216.868,25.258 C215.396,26.840 211.754,25.845 208.734,23.029 C205.714,20.218 204.465,16.656 205.933,15.074 C207.411,13.492 211.042,14.492 214.068,17.303 Z"/>
 </svg></div>
-  <p class="us-sub" id="us-sub">Hello, little <b>Izan Theodore</b></p>
+  <p class="us-sub" id="us-sub">Hello, little <b>Izan Theodore</b><br><span style="font-size:0.7em;opacity:0.8">Waight</span></p>
 </section>
 
 <!-- â”€â”€ SECTION 3: INVITATION â”€â”€ -->

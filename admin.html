@@ -584,6 +584,7 @@
     </div>
     <div class="nav-label">Management</div>
     <div class="nav-item active" onclick="showView('guests', event)">Guests Data</div>
+    <div class="nav-item" onclick="showView('messages', event)">Messages</div>
     <div class="nav-label">Public Pages</div>
     <a href="index.html" class="nav-item" target="_blank">🎉 Invitation</a>
     <a href="rsvp.html" class="nav-item" target="_blank">📋 RSVP</a>
@@ -656,6 +657,16 @@
         </table>
       </div>
 
+      <!-- MESSAGES VIEW -->
+      <div id="view-messages" style="display:none;">
+        <div style="margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--black);">Guest Messages</h2>
+          <button class="btn-sm" onclick="fetchMessages()">Refresh</button>
+        </div>
+        <div id="messages-list" style="display:grid;gap:1rem;">
+          <p style="color:#999;">Loading messages...</p>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -793,9 +804,13 @@
       if (evt && evt.currentTarget) evt.currentTarget.classList.add('active');
 
       document.getElementById('view-guests').style.display = view === 'guests' ? 'block' : 'none';
+      document.getElementById('view-messages').style.display = view === 'messages' ? 'block' : 'none';
       document.getElementById('add-guest-btn').style.display = view === 'guests' ? 'inline-flex' : 'none';
 
-      document.getElementById('view-title').textContent = 'Guest Management';
+      const titles = { guests: 'Guest Management', messages: 'Guest Messages' };
+      document.getElementById('view-title').textContent = titles[view] || 'Guest Management';
+
+      if (view === 'messages') fetchMessages();
     }
 
     function startLiveRefresh() {
@@ -852,6 +867,32 @@
         updateSyncLabel();
       } catch (err) {
         document.getElementById('guests-tbody').innerHTML = `<tr><td colspan="7" style="text-align:center;color:red;padding:2rem;">Error loading data from Convex.</td></tr>`;
+      }
+    }
+
+    async function fetchMessages() {
+      const list = document.getElementById('messages-list');
+      list.innerHTML = '<p style="color:#999;">Loading messages...</p>';
+      try {
+        const res = await fetch(`${CONVEX_HTTP_URL}/api/messages`, { headers: authHeaders() });
+        if (res.status === 401) { await logout(); return; }
+        if (!res.ok) throw new Error(await res.text());
+        const msgs = await res.json();
+        if (!msgs.length) {
+          list.innerHTML = '<p style="color:#999;text-align:center;padding:2rem;">No messages yet.</p>';
+          return;
+        }
+        list.innerHTML = msgs.map(m => `
+          <div style="background:white;border:1px solid #e8e2d8;padding:1rem 1.2rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+              <strong style="font-size:0.9rem;">${escapeHtml(m.name)}</strong>
+              <span style="font-size:0.65rem;color:#999;">${new Date(m.created_at).toLocaleString()}</span>
+            </div>
+            <p style="font-size:0.82rem;color:#333;line-height:1.5;">${escapeHtml(m.content)}</p>
+          </div>
+        `).join('');
+      } catch (err) {
+        list.innerHTML = `<p style="color:#e74c3c;text-align:center;padding:2rem;">Failed to load messages.</p>`;
       }
     }
 

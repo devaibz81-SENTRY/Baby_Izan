@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Baby Shower Guest List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0d0d0d;
+      --ivory: #f5f0e8;
+      --champagne: #d4b896;
+      --gold: #c9a84c;
+      --sidebar: #111;
+      --attending: #2ecc71;
+      --declined: #e74c3c;
+      --later: #f39c12;
+      --msg: #3498db;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: #f0ede8;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    /* Login */
+    #login-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #login-overlay.hidden {
+      display: none;
+    }
+
+    .login-box {
+      text-align: center;
+      padding: 3rem;
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      min-width: 320px;
+    }
+
+    .login-box h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--ivory);
+      margin-bottom: 0.5rem;
+    }
+
+    .login-box p {
+      font-size: 0.65rem;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.2em;
+      margin-bottom: 2rem;
+    }
+
+    .login-input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      color: var(--ivory);
+      font-family: 'Montserrat', sans-serif;
+      outline: none;
+      margin-bottom: 1rem;
+      text-align: center;
+      letter-spacing: 0.2em;
+    }
+
+    .login-input:focus {
+      border-color: var(--gold);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--gold);
+      border: none;
+      color: var(--black);
+      cursor: pointer;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      transition: background 0.3s;
+    }
+
+    .login-btn:hover {
+      background: #a8863a;
+    }
+
+    /* Sidebar */
+    #sidebar {
+      width: 240px;
+      background: var(--sidebar);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 0;
+      min-height: 100vh;
+      flex-shrink: 0;
+    }
+
+    .sidebar-brand {
+      text-align: center;
+      padding: 0 1.5rem 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .sidebar-brand .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--champagne);
+      font-style: italic;
+    }
+
+    .nav-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.25);
+      padding: 0 1.5rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.7rem 1.5rem;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.5);
+      border-left: 2px solid transparent;
+      font-size: 0.78rem;
+      transition: 0.2s;
+    }
+
+    .nav-item:hover,
+    .nav-item.active,
+    a.nav-item:hover {
+      color: var(--gold);
+      background: rgba(201, 168, 76, 0.06);
+      border-left-color: var(--gold);
+    }
+    
+    a.nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.7rem 1.5rem;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.5);
+      border-left: 2px solid transparent;
+      font-size: 0.78rem;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+
+    /* Main Area */
+    #main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .top-bar {
+      background: white;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5e0d8;
+    }
+
+    .sync-indicator {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #777;
+      margin-top: 0.4rem;
+    }
+
+    .sync-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2ecc71;
+      margin-right: 0.45rem;
+    }
+
+    .top-bar-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-sm {
+      padding: 0.5rem 1.2rem;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--black);
+      cursor: pointer;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: 0.2s;
+    }
+
+    .btn-sm:hover {
+      background: var(--gold);
+      color: white;
+    }
+
+    .btn-sm.primary {
+      background: var(--gold);
+      color: white;
+    }
+
+    #content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 2rem;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-bottom: 3px solid transparent;
+    }
+
+    .stat-card.green {
+      border-color: var(--attending);
+    }
+
+    .stat-card.red {
+      border-color: var(--declined);
+    }
+
+    .stat-card.yellow {
+      border-color: var(--later);
+    }
+
+    .stat-card.blue {
+      border-color: var(--msg);
+    }
+
+    .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-num {
+      font-size: 2.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    /* Filters */
+    .filter-bar {
+      background: white;
+      padding: 1rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .filter-btn {
+      padding: 0.4rem 1rem;
+      border: 1px solid #ddd;
+      background: transparent;
+      font-size: 0.65rem;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .filter-btn.active {
+      background: var(--black);
+      color: white;
+      border-color: var(--black);
+    }
+
+    .filter-btn:hover:not(.active) {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th {
+      padding: 0.8rem 1rem;
+      text-align: left;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #aaa;
+      background: #fafaf9;
+    }
+
+    td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #f8f5f0;
+      font-size: 0.8rem;
+      color: #333;
+    }
+
+    .status-pill {
+      display: inline-block;
+      padding: 0.25rem 0.8rem;
+      border-radius: 2px;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .pill-attending {
+      background: rgba(46, 204, 113, 0.1);
+      color: var(--attending);
+    }
+
+    .pill-declined {
+      background: rgba(231, 76, 60, 0.1);
+      color: var(--declined);
+    }
+
+    .pill-later {
+      background: rgba(243, 156, 18, 0.1);
+      color: var(--later);
+    }
+
+    .pill-invited {
+      background: rgba(149, 165, 166, 0.1);
+      color: #95a5a6;
+    }
+
+    .btn-link {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .table-shell {
+      overflow-x: auto;
+    }
+
+    .vault-hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .vault-copy {
+      background: linear-gradient(140deg, #171410 0%, #241c13 58%, #3b2f1a 100%);
+      color: var(--ivory);
+      padding: 2rem;
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      box-shadow: 0 16px 34px rgba(13, 13, 13, 0.15);
+    }
+
+    .vault-copy h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .vault-kicker {
+      display: inline-block;
+      margin-bottom: 0.85rem;
+      font-size: 0.58rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.62);
+    }
+
+    .vault-copy p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      max-width: 32rem;
+      color: rgba(245, 240, 232, 0.85);
+    }
+
+    .vault-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .vault-preview {
+      position: relative;
+      min-height: 270px;
+      padding: 1.6rem;
+      background:
+        radial-gradient(circle at top left, rgba(212, 184, 150, 0.22), transparent 42%),
+        linear-gradient(180deg, #fffaf2 0%, #f6efe6 100%);
+      border: 1px solid #eadfce;
+      overflow: hidden;
+    }
+
+    .vault-stack {
+      position: relative;
+      height: 100%;
+      min-height: 236px;
+    }
+
+    .vault-card-mini {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: min(100%, 280px);
+      min-height: 180px;
+      padding: 1.25rem;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(201, 168, 76, 0.18);
+      box-shadow: 0 16px 30px rgba(13, 13, 13, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform-origin: center bottom;
+    }
+
+    .vault-card-mini:nth-child(1) {
+      transform: translate(0, 0) rotate(-2deg);
+      z-index: 3;
+    }
+
+    .vault-card-mini:nth-child(2) {
+      transform: translate(-14px, 12px) rotate(2deg);
+      z-index: 2;
+    }
+
+    .vault-card-mini:nth-child(3) {
+      transform: translate(-28px, 24px) rotate(-4deg);
+      z-index: 1;
+    }
+
+    .vault-card-mini blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 1.45;
+      color: #2f2418;
+      margin: 0;
+    }
+
+    .vault-card-mini footer {
+      margin-top: 1rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #826837;
+    }
+
+    .media-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .media-panel {
+      background: white;
+      border: 1px solid #e8e2d8;
+      box-shadow: 0 10px 28px rgba(13, 13, 13, 0.04);
+      overflow: hidden;
+    }
+
+    .media-panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      padding: 1.4rem 1.5rem 1rem;
+      border-bottom: 1px solid #efe8dd;
+      background: linear-gradient(180deg, #fffdfb 0%, #fcf8f2 100%);
+    }
+
+    .media-panel-head h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    .media-kicker {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #8b7444;
+    }
+
+    .media-count {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #6f6557;
+      text-align: right;
+    }
+
+    .media-note-cell {
+      max-width: 360px;
+      line-height: 1.55;
+      white-space: normal;
+    }
+
+    .media-empty {
+      text-align: center;
+      padding: 2rem;
+      color: #8b8276;
+      font-size: 0.84rem;
+    }
+
+    .song-tools {
+      padding: 1rem 1.5rem 1.2rem;
+      border-bottom: 1px solid #efe8dd;
+      background: #fffdfa;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .song-tools-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .song-tools-row input {
+      flex: 1 1 220px;
+      min-width: 220px;
+      padding: 0.66rem 0.78rem;
+      border: 1px solid #ddd3c2;
+      background: white;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      outline: none;
+    }
+
+    .song-tools-row input:focus {
+      border-color: var(--gold);
+    }
+
+    .song-help {
+      font-size: 0.73rem;
+      color: #70685c;
+      line-height: 1.55;
+    }
+
+    /* WhatsApp Inbox Build */
+    .wa-builder {
+      background: white;
+      padding: 2rem;
+      border: 1px solid #e8e2d8;
+      box-shadow: 0 8px 22px rgba(13, 13, 13, 0.04);
+    }
+
+    .wa-builder h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .wa-muted {
+      font-size: 0.84rem;
+      color: #5f5f5f;
+      margin-bottom: 1.4rem;
+      line-height: 1.55;
+    }
+
+    .wa-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .wa-panel {
+      border: 1px solid #ece6dc;
+      background: #fcfbf9;
+      padding: 1rem;
+    }
+
+    .wa-panel h3 {
+      font-size: 0.73rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #826837;
+      margin-bottom: 0.9rem;
+    }
+
+    .wa-panel small {
+      color: #717171;
+      font-size: 0.75rem;
+    }
+
+    .wa-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .wa-kpi {
+      border: 1px solid #ece6dc;
+      background: #fcfbf9;
+      padding: 0.75rem 0.85rem;
+    }
+
+    .wa-kpi strong {
+      display: block;
+      font-size: 1.3rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: #1f1f1f;
+      line-height: 1.1;
+    }
+
+    .wa-kpi span {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #737373;
+    }
+
+    .wa-row {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .wa-row select,
+    .wa-row input {
+      padding: 0.64rem;
+      border: 1px solid #ddd;
+      outline: none;
+      min-width: 260px;
+      background: white;
+    }
+
+    .wa-row select:focus,
+    .wa-row input:focus {
+      border-color: var(--gold);
+    }
+
+    .wa-template {
+      width: 100%;
+      min-height: 150px;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      resize: vertical;
+      margin-bottom: 1rem;
+    }
+
+    .wa-vars {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .wa-var {
+      padding: 0.3rem 0.7rem;
+      background: #f5f5f5;
+      font-size: 0.65rem;
+      cursor: pointer;
+      border: 1px solid #e0e0e0;
+    }
+
+    .wa-var:hover {
+      background: var(--gold);
+      color: white;
+    }
+
+    .wa-preview {
+      background: #f0ede8;
+      padding: 1rem;
+      border-left: 3px solid #25D366;
+      font-size: 0.82rem;
+      white-space: pre-wrap;
+      margin-bottom: 1rem;
+    }
+
+    .wa-actions {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .wa-person-info {
+      font-size: 0.76rem;
+      color: #505050;
+      background: #fff;
+      border: 1px solid #ece6dc;
+      padding: 0.7rem 0.75rem;
+      min-height: 44px;
+    }
+
+    .action-btn {
+      padding: 0.38rem 0.65rem;
+      border: 1px solid #ddd;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.65rem;
+    }
+
+    .action-btn.wa {
+      border-color: #25D366;
+      color: #25D366;
+      font-weight: 600;
+      min-width: 96px;
+    }
+
+    .action-btn.wa:hover {
+      background: #25D366;
+      color: white;
+    }
+
+    .action-btn.danger {
+      border-color: #e74c3c;
+      color: #e74c3c;
+      font-weight: 600;
+    }
+
+    .action-btn.danger:hover {
+      background: #e74c3c;
+      color: #fff;
+    }
+
+    .table-actions {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: white;
+      padding: 2.5rem;
+      width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .modal-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-group label {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #aaa;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .modal-group input,
+    .modal-group select {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ddd;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .modal-group input:focus,
+    .modal-group select:focus {
+      border-color: var(--gold);
+    }
+
+    @media (max-width: 960px) {
+      .wa-kpis {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .vault-hero,
+      .media-layout,
+      .wa-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      #content {
+        padding: 1rem;
+      }
+
+      .wa-kpis {
+        grid-template-columns: 1fr;
+      }
+
+      .vault-copy,
+      .vault-preview {
+        padding: 1.2rem;
+      }
+
+      .vault-actions {
+        flex-direction: column;
+      }
+
+      .wa-row select,
+      .wa-row input {
+        min-width: 100%;
+        width: 100%;
+      }
+    }
+  
+    
+    /* --- COLOR & TRIM OVERRIDES V2 --- */
+    .hero-flourish, .hero-divider, 
+    .story-signature, .story-img-accent {
+        display: none !important;
+    }
+    
+    /* Restore Ampersand */
+    .hero-ampersand {
+        display: inline-block !important;
+        color: #000000 !important;
+    }
+    
+    /* Soft shadows on headings */
+    h1, h2, h3, .section-title, .hero-names, .gift-title {
+        text-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
+    }
+    
+    /* Black Nav Header & Buttons */
+    nav {
+        background: #000000 !important;
+        border-bottom: none !important;
+    }
+    nav a {
+        background: #000000 !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255,255,255,0.3) !important;
+    }
+    nav a:hover {
+        background: rgba(255,255,255,0.15) !important;
+        border-color: #ffffff !important;
+    }
+    
+    /* White Footer Text with Dark Background */
+    footer {
+        background: #000000 !important;
+        color: #ffffff !important;
+    }
+    footer .footer-names, footer p {
+        color: #ffffff !important;
+    }
+    /* Larger Date in Footer */
+    footer p:nth-of-type(1) {
+        font-size: clamp(2rem, 5vw, 3.2rem) !important;
+        margin-top: 1rem;
+    }
+    
+    /* Easy Mode Toggle for RSVP Testing */
+    .easy-toggle {
+        text-align: center;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    .easy-toggle label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        cursor: pointer;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255,255,240,0.6);
+        transition: color 0.2s;
+    }
+    .easy-toggle label:hover { color: var(--gold); }
+    .easy-toggle input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--gold);
+        cursor: pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Login -->
+  <div id="login-overlay">
+    <div class="login-box">
+      <h2>Baby Shower Admin</h2>
+      <p>Jess &amp; Adriel Waight - Izan Theodore</p>
+      <input type="password" id="admin-pass" class="login-input" placeholder="Enter Password"
+        onkeydown="if(event.key==='Enter') doLogin()" />
+      <button class="login-btn" onclick="doLogin()">Enter</button>
+      <p id="login-err" style="color:#e74c3c;display:none;margin-top:1rem;">Incorrect password.</p>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-name">Jess &amp; Adriel<br><span style="font-size:0.7rem;opacity:0.6">Baby Izan Theodore</span></div>
+    </div>
+    <div class="nav-label">Management</div>
+    <div class="nav-item active" onclick="showView('guests', event)">Guests Data</div>
+    <div class="nav-item" onclick="showView('media', event)">Songs &amp; Messages</div>
+    <div class="nav-item" onclick="showView('whatsapp', event)">WhatsApp Inbox</div>
+    <div class="nav-label">Public Pages</div>
+    <a href="index.html" class="nav-item" target="_blank">🎉 Invitation</a>
+    <a href="rsvp.html" class="nav-item" target="_blank">📋 RSVP</a>
+    <a href="rsvp.html?advanced=1" class="nav-item" target="_blank" style="font-size:0.7rem;opacity:0.7;">📋 RSVP (Full Form)</a>
+  </div>
+
+  <!-- Main -->
+  <div id="main">
+    <div class="top-bar">
+      <div>
+        <h1 id="view-title" style="font-size:1.1rem;font-weight:400;">Guest Management</h1>
+        <div id="sync-indicator" class="sync-indicator"><span class="sync-dot"></span>Live Sync Active</div>
+      </div>
+      <div class="top-bar-actions">
+        <button class="btn-sm" onclick="fetchGuests()">Refresh</button>
+        <button id="add-guest-btn" class="btn-sm primary" onclick="openAddGuest()">+ Add Guest / Family</button>
+        <button class="btn-sm" onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <div id="content">
+      <!-- GUEST LIST VIEW -->
+      <div id="view-guests">
+        <div class="stats-grid">
+          <div class="stat-card green">
+            <div class="stat-label">Attending</div>
+            <div class="stat-num" id="st-attending">0</div>
+          </div>
+          <div class="stat-card red">
+            <div class="stat-label">Declined</div>
+            <div class="stat-num" id="st-declined">0</div>
+          </div>
+          <div class="stat-card yellow">
+            <div class="stat-label">Ask Later (Waitlist)</div>
+            <div class="stat-num" id="st-later">0</div>
+          </div>
+          <div class="stat-card blue">
+            <div class="stat-label">Total Invited Seats</div>
+            <div class="stat-num" id="st-total">0</div>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+          <button class="filter-btn" onclick="setFilter('attending', this)">Attending</button>
+          <button class="filter-btn" onclick="setFilter('later', this)">Ask Again Later</button>
+          <button class="filter-btn" onclick="setFilter('invited', this)">Not Responded</button>
+          <button class="filter-btn" onclick="setFilter('single', this)">Singles</button>
+          <button class="filter-btn" onclick="setFilter('couple', this)">Couples</button>
+          <button class="filter-btn" onclick="setFilter('family', this)">Families</button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Guest / Family Lead</th>
+              <th>Type</th>
+              <th>Max Size</th>
+              <th>Status</th>
+              <th>Contact</th>
+              <th>Deadline</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="guests-tbody">
+            <tr>
+              <td colspan="7" style="text-align:center;padding:3rem;">Loading data from Convex...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SONGS & MESSAGES VIEW -->
+      <div id="view-media" style="display:none;">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; padding: 3rem 1rem;">
+          <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--black); margin-bottom: 2rem;">Songs & Messages</h2>
+          <p style="color: #888; margin-bottom: 2rem;">Guest song requests and messages are stored in Google Sheets.</p>
+          
+          <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+            <!-- SONGS BUTTON -->
+            <div style="background: white; border: 1px solid #e8e2d8; border-radius: 12px; padding: 2rem; min-width: 280px; text-align: center;">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">🎵</div>
+              <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--gold);">Song List</h3>
+              <p style="font-size: 0.85rem; color: #888; margin-bottom: 1.5rem;">View all song requests from guests</p>
+              <a href="songs.html" target="_blank" 
+                 style="display: inline-block; padding: 0.8rem 2rem; background: var(--gold); color: white; text-decoration: none; border-radius: 6px; font-size: 0.8rem; letter-spacing: 0.1em;">
+                OPEN SONG LIST
+              </a>
+              <br><br>
+              <button onclick="shareWithDj()" style="padding: 0.8rem 2rem; background: #25D366; color: white; border: none; border-radius: 6px; font-size: 0.8rem; cursor: pointer; letter-spacing: 0.1em;">
+                📱 Share with DJ
+              </button>
+            </div>
+            
+            <!-- MESSAGES BUTTON -->
+            <div style="background: white; border: 1px solid #e8e2d8; border-radius: 12px; padding: 2rem; min-width: 280px; text-align: center;">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">💌</div>
+              <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--gold);">Messages</h3>
+              <p style="font-size: 0.85rem; color: #888; margin-bottom: 1.5rem;">Read guest messages one by one</p>
+              <a href="messages.html" target="_blank" 
+                 style="display: inline-block; padding: 0.8rem 2rem; background: var(--gold); color: white; text-decoration: none; border-radius: 6px; font-size: 0.8rem; letter-spacing: 0.1em;">
+                READ MESSAGES
+              </a>
+              <br><br>
+              <button onclick="downloadMessages()" style="padding: 0.8rem 2rem; background: #3498db; color: white; border: none; border-radius: 6px; font-size: 0.8rem; cursor: pointer; letter-spacing: 0.1em;">
+                📥 Download Messages
+              </button>
+            </div>
+          </div>
+      </div>
+
+      <!-- WHATSAPP VIEW -->
+      <div id="view-whatsapp" style="display:none;">
+        <div class="wa-builder">
+          <h2>WhatsApp Campaign Console</h2>
+          <p class="wa-muted">Send to groups or one guest at a time from a cleaner flow. Individual sends still use
+            RSVP-aware messages automatically.</p>
+
+          <div class="wa-kpis">
+            <div class="wa-kpi"><strong id="wa-kpi-phones">0</strong><span>With WhatsApp</span></div>
+            <div class="wa-kpi"><strong id="wa-kpi-invited">0</strong><span>Not Responded</span></div>
+            <div class="wa-kpi"><strong id="wa-kpi-later">0</strong><span>Ask Later</span></div>
+            <div class="wa-kpi"><strong id="wa-kpi-attending">0</strong><span>Attending</span></div>
+          </div>
+
+          <div class="wa-layout">
+            <div class="wa-panel">
+              <h3>Group Send</h3>
+              <div class="wa-row" style="margin-bottom:0.6rem;">
+                <select id="wa-group" onchange="updateWaPreview()">
+                  <option value="all">All Guests (Initial Invite)</option>
+                  <option value="invited">Not Responded Yet (Reminders)</option>
+                  <option value="later">Ask Later / Waitlist (Follow-ups)</option>
+                  <option value="attending">Attending (Event Updates)</option>
+                </select>
+                <button class="btn-sm primary" onclick="sendMassWA()">Open WhatsApp for Group</button>
+              </div>
+              <small>Opens a WhatsApp tab per matching guest with a saved phone number.</small>
+            </div>
+
+            <div class="wa-panel">
+              <h3>Send to Individual</h3>
+              <div class="wa-row" style="margin-bottom:0.6rem;">
+                <input id="wa-person-search" type="text" placeholder="Search by name or phone..."
+                  oninput="filterWaPeople()" />
+              </div>
+              <div class="wa-row" style="margin-bottom:0.6rem;">
+                <select id="wa-person" onchange="showSelectedPersonMeta()"></select>
+                <button class="btn-sm primary" onclick="sendOneWA()">Open WhatsApp for Person</button>
+              </div>
+              <div id="wa-person-meta" class="wa-person-info">Select a person to view details.</div>
+            </div>
+          </div>
+
+          <div class="wa-vars">
+            <span class="wa-var" onclick="insertVar('{{name}}')">{{name}}</span>
+            <span class="wa-var" onclick="insertVar('{{type}}')">{{type}}</span>
+            <span class="wa-var" onclick="insertVar('{{deadline}}')">{{deadline}}</span>
+            <span class="wa-var" onclick="insertVar('{{link}}')">{{link}}</span>
+          </div>
+
+          <!-- Default Template Box -->
+          <textarea id="wa-text" class="wa-template" oninput="updateWaPreview()">Hi {{name}},
+
+You are cordially invited to the baby shower of Izan Theodore Waight.
+
+We have reserved your RSVP as a {{type}} invitation. Kindly reply by {{deadline}}.
+
+Open your invitation and respond here:
+{{link}}
+
+With love,
+Jess & Adriel</textarea>
+
+          <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#888;">Live Preview (First
+            match)</div>
+          <textarea class="wa-preview wa-template" id="wa-preview" style="min-height:220px;">Loading preview...</textarea>
+
+          <div class="wa-actions" style="margin-top:1.3rem;">
+            <button class="btn-sm" onclick="copyWA()">Copy Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD GUEST MODAL -->
+  <div class="modal-overlay" id="add-modal">
+    <div class="modal">
+      <h2>Add Guest / Household</h2>
+      <div class="modal-row">
+        <div class="modal-group">
+          <label>First Name (Lead Guest)</label>
+          <input type="text" id="m-fname" placeholder="John" />
+        </div>
+        <div class="modal-group">
+          <label>Last Name</label>
+          <input type="text" id="m-lname" placeholder="Doe" />
+        </div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-group">
+          <label>Guest Type</label>
+          <select id="m-type" onchange="syncPartySize()">
+            <option value="single">Single</option>
+            <option value="couple">Couple</option>
+            <option value="family">Family (up to 4)</option>
+          </select>
+        </div>
+        <div class="modal-group">
+          <label>Max Party Size</label>
+          <input type="number" id="m-max" value="1" min="1" max="10" />
+        </div>
+      </div>
+      <div id="m-spouse-row" class="modal-row" style="display:none;">
+        <div class="modal-group" style="grid-column: 1 / -1;">
+          <label>Spouse / Partner First Name (Optional)</label>
+          <input type="text" id="m-spouse" placeholder="Jane" />
+        </div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-group">
+          <label>WhatsApp Number</label>
+          <input type="tel" id="m-phone" placeholder="+501..." />
+        </div>
+        <div class="modal-group">
+          <label>RSVP Deadline</label>
+          <input type="date" id="m-due" value="2026-06-10" />
+        </div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:1rem;margin-top:2rem;">
+        <button class="btn-sm" onclick="document.getElementById('add-modal').classList.remove('open')">Cancel</button>
+        <button class="btn-sm primary" onclick="submitGuest()">Save Guest</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const CONVEX_HTTP_URL = 'https://friendly-condor-189.convex.site';
+    const WEDDING_URL = '';
+    const SESSION_KEY = 'jwa_admin_token';
+    const LIVE_REFRESH_MS = 12000;
+    let guests = [];
+    let currentView = 'guests';
+    let currentFilter = 'all';
+    let waPersonQuery = '';
+    let adminToken = localStorage.getItem(SESSION_KEY) || '';
+    let refreshTimer = null;
+
+    async function doLogin() {
+      const pass = document.getElementById('admin-pass').value;
+      try {
+        const res = await fetch(`${CONVEX_HTTP_URL}/api/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: pass })
+        });
+        if (!res.ok) throw new Error('Invalid password');
+        const data = await res.json();
+        adminToken = data.token;
+        localStorage.setItem(SESSION_KEY, adminToken);
+        document.getElementById('login-overlay').classList.add('hidden');
+        document.getElementById('login-err').style.display = 'none';
+        await fetchGuests();
+        startLiveRefresh();
+      } catch (err) {
+        document.getElementById('login-err').style.display = 'block';
+      }
+    }
+
+    async function logout() {
+      if (refreshTimer) {
+        clearInterval(refreshTimer);
+        refreshTimer = null;
+      }
+      if (adminToken) {
+        await fetch(`${CONVEX_HTTP_URL}/api/auth/logout`, {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${adminToken}` }
+        }).catch(() => { });
+      }
+      adminToken = '';
+      localStorage.removeItem(SESSION_KEY);
+      document.getElementById('login-overlay').classList.remove('hidden');
+      document.getElementById('admin-pass').value = '';
+    }
+
+    window.onload = async () => {
+      if (adminToken && await hasValidSession()) {
+        document.getElementById('login-overlay').classList.add('hidden');
+        await fetchGuests();
+        startLiveRefresh();
+      } else {
+        adminToken = '';
+        localStorage.removeItem(SESSION_KEY);
+        document.getElementById('login-overlay').classList.remove('hidden');
+      }
+    };
+
+    function authHeaders(extra = {}) {
+      return { ...extra, Authorization: `Bearer ${adminToken}` };
+    }
+
+    async function hasValidSession() {
+      if (!adminToken) return false;
+      try {
+        const res = await fetch(`${CONVEX_HTTP_URL}/api/auth/me`, {
+          headers: authHeaders()
+        });
+        return res.ok;
+      } catch {
+        return false;
+      }
+    }
+
+    function showView(view, evt) {
+      currentView = view;
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+      if (evt && evt.currentTarget) evt.currentTarget.classList.add('active');
+
+      document.getElementById('view-guests').style.display = view === 'guests' ? 'block' : 'none';
+      document.getElementById('view-media').style.display = view === 'media' ? 'block' : 'none';
+      document.getElementById('view-whatsapp').style.display = view === 'whatsapp' ? 'block' : 'none';
+      document.getElementById('add-guest-btn').style.display = view === 'guests' ? 'inline-flex' : 'none';
+
+      const titles = {
+        guests: 'Guest Management',
+        media: 'Songs & Messages',
+        whatsapp: 'WhatsApp Inbox'
+      };
+      document.getElementById('view-title').textContent = titles[view] || 'Guest Management';
+
+      if (view === 'media') renderMediaView();
+      if (view === 'whatsapp') updateWaPreview();
+    }
+
+    function startLiveRefresh() {
+      if (refreshTimer) clearInterval(refreshTimer);
+      refreshTimer = setInterval(() => {
+        if (document.hidden) return;
+        fetchGuests({ showLoading: false });
+      }, LIVE_REFRESH_MS);
+    }
+
+    function setFilter(f, btn) {
+      currentFilter = f;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTable();
+    }
+
+    // Data sync
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function formatShortDate(value) {
+      if (!value) return '-';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return String(value);
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    async function copyText(value, successMessage) {
+      const text = String(value || '').trim();
+      if (!text) return;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        alert(successMessage || 'Copied to clipboard.');
+      } catch {
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        temp.setAttribute('readonly', 'readonly');
+        temp.style.position = 'absolute';
+        temp.style.left = '-9999px';
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        temp.remove();
+        alert(successMessage || 'Copied to clipboard.');
+      }
+    }
+
+    function getVaultUrl() {
+      return `${String(WEDDING_URL || '').replace(/\/+$/, '')}/messages`;
+    }
+
+    function copyVaultLink() {
+      copyText(getVaultUrl(), 'Message vault link copied.');
+    }
+
+    function shareWithDj() {
+      const songLink = 'https://wedinvitation-ruddy.vercel.app/songs.html';
+      const text = `Hey! Here are our wedding song requests:\n\n${songLink}`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function downloadMessages() {
+      const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw33IBpUacNLGAcqc4EGp5L2dlxaMkWSbEFvSTdFTDq6p9iO5oZCIWl6aS-BB6EIW-JUA/exec';
+      fetch(APPS_SCRIPT_URL + '?sheet=Messages')
+        .then(res => res.json())
+        .then(data => {
+          const messages = data.data || [];
+          if (!messages.length) {
+            alert('No messages to download.');
+            return;
+          }
+          const content = messages.map((m, i) => `${i + 1}. ${m.name}\n"${m.content}"\n`).join('\n');
+          const blob = new Blob([`Baby Shower Guest Messages\nJess & Adriel Waight\n\n${content}`], { type: 'text/plain' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'wedding-messages.txt';
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+    }
+
+    async function fetchGuests(opts = { showLoading: true }) {
+      if (opts.showLoading) {
+        document.getElementById('guests-tbody').innerHTML = `<tr><td colspan="7" style="text-align:center;padding:2rem;">Syncing with Convex...</td></tr>`;
+      }
+      try {
+        const guestRes = await fetch(`${CONVEX_HTTP_URL}/api/guests`, {
+          headers: authHeaders()
+        });
+
+        if (guestRes.status === 401) {
+          await logout();
+          throw new Error('Session expired. Please log in again.');
+        }
+        if (!guestRes.ok) throw new Error(await guestRes.text());
+
+        guests = await guestRes.json();
+
+        updateStats();
+        renderTable();
+        updateWaPreview();
+        updateSyncLabel();
+      } catch (err) {
+        document.getElementById('guests-tbody').innerHTML = `<tr><td colspan="7" style="text-align:center;color:red;padding:2rem;">Error loading data from Convex.</td></tr>`;
+      }
+    }
+
+    function updateSyncLabel() {
+      const el = document.getElementById('sync-indicator');
+      const now = new Date();
+      const t = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      el.innerHTML = `<span class="sync-dot"></span>Live Sync Active - Last update ${t}`;
+    }
+
+    function updateStats() {
+      const att = guests.filter(g => g.attendance === 'attending').reduce((sum, g) => sum + (Number(g.max_party) || 1), 0);
+      const dec = guests.filter(g => g.attendance === 'declined').length;
+      const lat = guests.filter(g => g.attendance === 'later').length;
+      const totalSeats = guests.reduce((sum, g) => sum + (Number(g.max_party) || 1), 0);
+      document.getElementById('st-total').textContent = totalSeats;
+      document.getElementById('st-attending').textContent = att;
+      document.getElementById('st-declined').textContent = dec;
+      document.getElementById('st-later').textContent = lat;
+    }
+
+    function renderTable() {
+      let filtered = guests.filter(g => {
+        if (currentFilter === 'all') return true;
+        if (currentFilter === 'single' || currentFilter === 'couple' || currentFilter === 'family') return g.guest_type === currentFilter;
+        if (currentFilter === 'invited') return (!g.attendance || g.attendance === 'invited');
+        return g.attendance === currentFilter;
+      });
+
+      const tbody = document.getElementById('guests-tbody');
+      if (!filtered.length) { tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:2rem;">No guests matching filter.</td></tr>`; return; }
+
+      tbody.innerHTML = filtered.map(g => {
+        const st = g.attendance || 'invited';
+        const pClass = { attending: 'pill-attending', declined: 'pill-declined', later: 'pill-later', invited: 'pill-invited' }[st];
+        const pLabel = { attending: 'Yes', declined: 'No', later: 'Ask Later', invited: 'Invited' }[st];
+        const key = getGuestKey(g);
+        const hasPhone = !!normalizeWaPhone(g.phone);
+
+        let displayName = `<strong>${g.first_name}${g.spouse_name ? ' & ' + g.spouse_name : ''} ${g.last_name}</strong>`;
+
+        return `<tr>
+          <td>${displayName}</td>
+          <td style="text-transform:capitalize">${g.guest_type || 'Single'}</td>
+          <td>${g.max_party || 1} allowed</td>
+          <td><span class="status-pill ${pClass}">${pLabel}</span></td>
+          <td>${g.phone || '-'}</td>
+          <td style="font-size:0.75rem">${g.deadline ? new Date(g.deadline).toLocaleDateString() : '-'}</td>
+          <td><div class="table-actions">
+            <button class="action-btn" onclick="openEditGuest('${key}')" style="border-color:var(--gold);color:var(--gold);">Edit</button>
+            ${hasPhone ? `<button class="action-btn wa" onclick="sendQuickWA('${key}')" title="Send individualized WhatsApp message">WhatsApp</button>` : `<span style="font-size:0.7rem;color:#999;">No phone</span>`}
+            <button class="action-btn danger" onclick="deleteGuest('${key}')">Delete</button>
+          </div></td>
+        </tr>`;
+      }).join('');
+    }
+
+    function renderMediaView() {
+      // Media view now shows simple buttons to external Google Apps Script pages
+      // No local rendering needed - view-media div contains static HTML
+    }
+
+    // Adding from dashboard
+    let editingGuestId = null;
+
+    function openAddGuest() {
+      editingGuestId = null;
+      document.getElementById('add-modal').querySelector('h2').textContent = 'Add Guest / Household';
+      document.getElementById('m-fname').value = '';
+      document.getElementById('m-lname').value = '';
+      document.getElementById('m-type').value = 'single';
+      document.getElementById('m-max').value = '1';
+      document.getElementById('m-phone').value = '';
+      document.getElementById('m-due').value = '2026-06-10';
+      document.getElementById('m-spouse').value = '';
+      syncPartySize();
+      document.getElementById('add-modal').classList.add('open');
+    }
+
+    function openEditGuest(key) {
+      const g = findGuestByKey(key);
+      if (!g) return;
+      editingGuestId = g._id || g.id;
+      document.getElementById('add-modal').querySelector('h2').textContent = 'Edit Guest / Household';
+      document.getElementById('m-fname').value = g.first_name || '';
+      document.getElementById('m-lname').value = g.last_name || '';
+      document.getElementById('m-type').value = g.guest_type || 'single';
+      document.getElementById('m-max').value = g.max_party || 1;
+      document.getElementById('m-phone').value = g.phone || '';
+      document.getElementById('m-due').value = (g.deadline || '2026-06-10').split('T')[0];
+      document.getElementById('m-spouse').value = g.spouse_name || '';
+      syncPartySize();
+      document.getElementById('add-modal').classList.add('open');
+    }
+
+    function syncPartySize() {
+      const t = document.getElementById('m-type').value;
+      const m = document.getElementById('m-max');
+      const s = document.getElementById('m-spouse-row');
+      if (t === 'single') m.value = 1; else if (t === 'couple') m.value = 2; else if (t === 'family') m.value = 4;
+      s.style.display = (t === 'couple') ? 'grid' : 'none';
+    }
+
+    function submitGuest() {
+      const btn = document.querySelector('.modal .primary');
+      const originalText = btn.textContent;
+      btn.textContent = 'Saving...'; btn.disabled = true;
+
+      const payload = {
+        action: editingGuestId ? 'update_guest' : 'add_guest',
+        guest_id: editingGuestId || undefined,
+        first_name: document.getElementById('m-fname').value.trim(),
+        last_name: document.getElementById('m-lname').value.trim(),
+        guest_type: document.getElementById('m-type').value,
+        max_party: parseInt(document.getElementById('m-max').value, 10),
+        phone: document.getElementById('m-phone').value.trim(),
+        deadline: document.getElementById('m-due').value,
+        spouse_name: document.getElementById('m-spouse').value.trim(),
+        attendance: editingGuestId ? undefined : 'invited'
+      };
+
+      fetch(`${CONVEX_HTTP_URL}/api/guest`, {
+        method: 'POST',
+        headers: authHeaders({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify(payload)
+      }).then(async (res) => {
+        if (res.status === 401) {
+          await logout();
+          throw new Error('Session expired. Please log in again.');
+        }
+        if (!res.ok) throw new Error(await res.text());
+        document.getElementById('add-modal').classList.remove('open');
+        btn.textContent = originalText; btn.disabled = false;
+        fetchGuests();
+      }).catch(e => { alert('Failed: ' + e); btn.textContent = originalText; btn.disabled = false; });
+    }
+
+    // WhatsApp builder
+    function generatePersonalLink(g) {
+      const base = String(WEDDING_URL || '').replace(/\/+$/, '');
+      if (!g || !g.first_name) return `${base}/`;
+
+      const p = new URLSearchParams({
+        id: g._id || g.id || '',
+        name: `${g.first_name} ${g.last_name || ''}`.trim(),
+        spouse: g.spouse_name || '',
+        type: g.guest_type || 'single',
+        max: g.max_party || 1,
+        due: g.deadline || ''
+      });
+      return `${base}/?${p.toString()}`;
+    }
+
+    function getGuestKey(g) {
+      return encodeURIComponent(String(g?._id || g?.id || `${g?.first_name || ''}-${g?.last_name || ''}-${g?.phone || ''}`));
+    }
+
+    function findGuestByKey(key) {
+      return guests.find(g => getGuestKey(g) === key);
+    }
+
+    function normalizeWaPhone(phone) {
+      return String(phone || '').replace(/[^\d]/g, '');
+    }
+
+    function getGuestsForTarget(tgt, requirePhone = false) {
+      const list = guests.filter(g => (
+        tgt === 'all'
+          ? true
+          : tgt === 'invited'
+            ? (!g.attendance || g.attendance === 'invited')
+            : g.attendance === tgt
+      ));
+      return requirePhone ? list.filter(g => normalizeWaPhone(g.phone)) : list;
+    }
+
+    function openGuestWhatsApp(g, customText = null) {
+      if (!g) return false;
+      const phone = normalizeWaPhone(g.phone);
+      if (!phone) return false;
+      const text = customText !== null ? customText : buildPersonalizedText(g);
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+      return true;
+    }
+
+    function buildPersonalizedText(g) {
+      let msg = buildText(g);
+      if (!g) return msg;
+
+      const firstName = String(g.first_name || '').trim();
+      if (firstName && !msg.toLowerCase().includes(firstName.toLowerCase())) {
+        msg = `Hi ${firstName},\n\n${msg}`;
+      }
+
+      const link = generatePersonalLink(g);
+      if (link && !msg.includes(link)) {
+        msg = `${msg}\n\nRSVP link:\n${link}`;
+      }
+
+      return tidyMessage(msg);
+    }
+
+    function sendQuickWA(key) {
+      const person = findGuestByKey(key);
+      if (!person) {
+        alert('Could not find this guest.');
+        return;
+      }
+      if (!openGuestWhatsApp(person)) {
+        alert('No valid WhatsApp number for this guest.');
+      }
+    }
+
+    async function deleteGuest(key) {
+      const guest = findGuestByKey(key);
+      if (!guest) {
+        alert('Could not find this guest.');
+        return;
+      }
+
+      const name = `${guest.first_name || ''} ${guest.last_name || ''}`.trim();
+      const confirmed = confirm(`Delete ${name || 'this guest'}?\nThis will remove the guest and linked RSVPs.`);
+      if (!confirmed) return;
+
+      try {
+        const guestId = guest._id || guest.id;
+        const res = await fetch(`${CONVEX_HTTP_URL}/api/guest/delete`, {
+          method: 'POST',
+          headers: authHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ guestId })
+        });
+
+        if (res.status === 401) {
+          await logout();
+          throw new Error('Session expired. Please log in again.');
+        }
+        if (!res.ok) throw new Error(await res.text());
+
+        await fetchGuests({ showLoading: false });
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : String(err);
+        alert(`Delete failed: ${msg}`);
+      }
+    }
+
+    function tidyMessage(message) {
+      return String(message || '')
+        .replace(/\r\n/g, '\n')
+        .replace(/[ \t]+\n/g, '\n')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+    }
+
+    function formatGuestType(guestType) {
+      const type = String(guestType || 'single').toLowerCase();
+      if (type === 'single') return 'single guest';
+      if (type === 'couple') return 'couple';
+      if (type === 'family') return 'family';
+      return type;
+    }
+
+    function formatDeadline(deadline) {
+      if (!deadline) return 'June 10, 2026';
+      const date = new Date(deadline);
+      if (Number.isNaN(date.getTime())) return String(deadline);
+      return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    }
+
+    function buildText(g) {
+      const tmpl = document.getElementById('wa-text').value;
+      if (!g) return tidyMessage(tmpl);
+
+      let greetName = g.first_name;
+      if (g.spouse_name) {
+        greetName += ` & ${g.spouse_name}`;
+      }
+
+      return tidyMessage(tmpl
+        .replace(/{{name}}/g, greetName)
+        .replace(/{{type}}/g, formatGuestType(g.guest_type))
+        .replace(/{{deadline}}/g, formatDeadline(g.deadline))
+        .replace(/{{link}}/g, generatePersonalLink(g)));
+    }
+
+    function updateWaPreview() {
+      const tgt = document.getElementById('wa-group').value;
+      const list = getGuestsForTarget(tgt, false);
+      const sample = list[0];
+      document.getElementById('wa-preview').value = sample ? buildText(sample) : "No guests match this filter.";
+      populateWaPeople();
+      updateWaMetrics();
+    }
+
+    function populateWaPeople() {
+      const sel = document.getElementById('wa-person');
+      const keepValue = sel.value;
+      const q = waPersonQuery.trim().toLowerCase();
+      const people = guests
+        .filter(g => normalizeWaPhone(g.phone) && g.first_name)
+        .filter(g => {
+          if (!q) return true;
+          const name = `${g.first_name || ''} ${g.last_name || ''}`.trim().toLowerCase();
+          const phone = String(g.phone || '').toLowerCase();
+          return name.includes(q) || phone.includes(q);
+        });
+
+      sel.innerHTML = people.length
+        ? people.map((g) => `<option value="${getGuestKey(g)}">${g.first_name} ${g.last_name || ''} - ${g.phone}</option>`).join('')
+        : '<option value="">No matching guests with WhatsApp number</option>';
+
+      if (people.length && keepValue && people.some(g => getGuestKey(g) === keepValue)) {
+        sel.value = keepValue;
+      }
+
+      showSelectedPersonMeta();
+    }
+
+    function filterWaPeople() {
+      waPersonQuery = document.getElementById('wa-person-search').value || '';
+      populateWaPeople();
+    }
+
+    function showSelectedPersonMeta() {
+      const box = document.getElementById('wa-person-meta');
+      const key = document.getElementById('wa-person').value;
+      if (!key) {
+        box.textContent = 'Select a person to view details.';
+        return;
+      }
+      const person = findGuestByKey(key);
+      if (!person) {
+        box.textContent = 'Could not load selected guest details.';
+        return;
+      }
+      const statusMap = { attending: 'Attending', declined: 'Declined', later: 'Ask Later', invited: 'Invited' };
+      const status = statusMap[person.attendance || 'invited'] || 'Invited';
+      const due = person.deadline ? new Date(person.deadline).toLocaleDateString() : 'Not set';
+      
+      box.textContent = `${person.first_name} ${person.last_name || ''} | ${person.guest_type || 'single'} | ${status} | RSVP deadline: ${due}`;
+      
+      const previewBox = document.getElementById('wa-preview');
+      if(previewBox && previewBox.tagName === 'TEXTAREA') {
+          previewBox.value = buildPersonalizedText(person);
+      }
+    }
+
+    function updateWaMetrics() {
+      const withPhone = guests.filter(g => normalizeWaPhone(g.phone)).length;
+      const invitedWithPhone = getGuestsForTarget('invited', true).length;
+      const laterWithPhone = getGuestsForTarget('later', true).length;
+      const attendingWithPhone = getGuestsForTarget('attending', true).length;
+
+      document.getElementById('wa-kpi-phones').textContent = withPhone;
+      document.getElementById('wa-kpi-invited').textContent = invitedWithPhone;
+      document.getElementById('wa-kpi-later').textContent = laterWithPhone;
+      document.getElementById('wa-kpi-attending').textContent = attendingWithPhone;
+    }
+
+    function sendOneWA() {
+      const sel = document.getElementById('wa-person');
+      if (!sel || !sel.value) { alert('Select a guest first.'); return; }
+      const person = findGuestByKey(sel.value);
+      if (!person) { alert('Could not find selected guest.'); return; }
+      
+      const previewBox = document.getElementById('wa-preview');
+      const customText = previewBox ? previewBox.value : '';
+      
+      if (!openGuestWhatsApp(person, customText)) {
+        alert('No valid WhatsApp number for selected guest.');
+      }
+    }
+
+    function insertVar(v) {
+      const ta = document.getElementById('wa-text');
+      const s = ta.selectionStart, e = ta.selectionEnd;
+      ta.value = ta.value.substring(0, s) + v + ta.value.substring(e);
+      updateWaPreview();
+    }
+
+    function copyWA() {
+      navigator.clipboard.writeText(document.getElementById('wa-preview').value);
+      alert('Copied to clipboard!');
+    }
+
+    function sendMassWA() {
+      const tgt = document.getElementById('wa-group').value;
+      const list = getGuestsForTarget(tgt, true);
+      if (!list.length) { alert('No guests with phones match this filter.'); return; }
+      if (!confirm(`Deploy WhatsApp msg to ${list.length} guest(s)?`)) return;
+
+      list.forEach((g, i) => {
+        setTimeout(() => { openGuestWhatsApp(g); }, i * 800);
+      });
+    }
+  </script>
+</body>
+
+</html>

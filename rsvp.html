@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP - Jess &amp; Adriel - Baby Shower Izan Theodore Waight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+  <style>
+    :root {
+      --black: #000000;
+      --ivory: #ffffff;
+      --champagne: #ffffff;
+      --gold: #c9a84c;
+      --cream: #000000;
+      --error: #c0392b;
+      --success: #ffffff;
+      --green: #ffffff;
+    }
+    
+    * {
+      accent-color: var(--gold);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color: #FFFFF0;
+    }
+
+    html, body {
+      background: #000000;
+      color: #FFFFF0;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      min-height: 100vh;
+      overflow-x: clip;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 1rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 240, 0.1);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      flex-wrap: wrap;
+      background: #000;
+      color: #FFFFF0;
+    }
+
+    nav a {
+      color: #FFFFF0;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 240, 0.2);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.5rem 0.9rem;
+      min-width: 110px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      opacity: 1;
+      color: var(--green);
+      border-color: var(--green);
+      background: rgba(141, 163, 139, 0.1);
+    }
+
+    /* â”€â”€â”€ HERO â”€â”€â”€ */
+    .rsvp-hero {
+      text-align: center;
+      padding: 5rem 2rem 3rem;
+      background: #000000;
+      color: #FFFFF0;
+    }
+
+    .rsvp-hero .eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,240,0.5);
+      margin-bottom: 1rem;
+    }
+
+    .rsvp-hero h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      margin-bottom: 1rem;
+      color: #FFFFF0;
+      text-shadow: 0 2px 20px rgba(255,255,255,0.15);
+    }
+
+    .rsvp-hero p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: rgba(255,255,240,0.75);
+      line-height: 1.8;
+      text-wrap: balance;
+    }
+
+    .personal-greeting {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--black);
+      margin-top: 1.5rem;
+    }
+
+    .personal-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: #888;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    .deadline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+      padding: 0.5rem 2rem;
+      border: 1px solid #FFFFF0;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #FFFFF0;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+
+    /* â”€â”€â”€ FORM â”€â”€â”€ */
+    .rsvp-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+      background: #0a0a0a;
+    }
+
+    .form-section {
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .form-section:nth-child(1) {
+      animation-delay: .1s
+    }
+
+    .form-section:nth-child(2) {
+      animation-delay: .25s
+    }
+
+    .form-section:nth-child(3) {
+      animation-delay: .4s
+    }
+
+    .form-section:nth-child(4) {
+      animation-delay: .55s
+    }
+
+    .form-section:nth-child(5) {
+      animation-delay: .7s
+    }
+
+    .form-section:nth-child(6) {
+      animation-delay: .85s
+    }
+
+    .form-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: #FFFFF0;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.7rem;
+      border-bottom: 1px solid rgba(255,255,240,0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      white-space: nowrap;
+    }
+
+    .form-section-title span {
+      font-size: 0.9rem;
+      color: rgba(255,255,240,0.4);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .form-row.single {
+      grid-template-columns: 1fr;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #FFFFF0;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 240, 0.3);
+      padding: 0.8rem 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: #FFFFF0;
+      font-weight: 500;
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-bottom-color: var(--gold);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-group select {
+      cursor: pointer;
+      appearance: none;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c9a84c'/%3E%3C/svg%3E") no-repeat right 0.5rem center;
+    }
+    
+    /* MESSAGE AREA */
+    .form-group textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 240, 0.2);
+      border-radius: 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: #FFFFF0;
+      background: transparent;
+      resize: vertical;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    }
+    
+    .form-group textarea::placeholder {
+      color: #999;
+      font-style: italic;
+    }
+    
+    /* NUMBER PAD */
+    .number-pad-container {
+      display: none;
+      margin-top: 0.5rem;
+      background: var(--black);
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    
+    .number-pad-container.active {
+      display: block;
+    }
+    
+    .number-pad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    
+    .num-btn {
+      background: var(--ivory);
+      border: none;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 1.3rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      color: var(--black);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .num-btn:hover {
+      background: var(--champagne);
+    }
+    
+    .num-btn:active {
+      transform: scale(0.95);
+      background: var(--gold);
+    }
+    
+    .num-btn.delete {
+      background: rgba(255,255,255,0.1);
+      color: var(--ivory);
+      font-size: 0.9rem;
+    }
+    
+    .num-btn.delete:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* ATTENDANCE */
+    .attendance-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .attend-option {
+      position: relative;
+    }
+
+    .attend-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+    }
+
+    .attend-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 118px;
+      padding: 1.2rem 0.85rem;
+      border: 1px solid rgba(255, 255, 240, 0.2);
+      border-radius: 12px;
+      background: transparent;
+      color: #FFFFF0;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .attend-label:hover {
+      border-color: var(--gold);
+      background: rgba(255, 255, 240, 0.05);
+      color: #FFFFF0;
+    }
+
+    .attend-option input:checked+.attend-label {
+      border-color: var(--gold);
+      background: rgba(201, 168, 76, 0.1);
+      color: #FFFFF0;
+      box-shadow: 0 0 15px rgba(201, 168, 76, 0.1);
+    }
+    .attend-text { color: inherit; }
+    .attend-sub { color: inherit; opacity: 0.7; }
+    .attend-icon svg rect { stroke: #FFFFF0; }
+    .attend-icon svg path { stroke: #FFFFF0; }
+
+    .attend-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+    }
+
+    .attend-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .attend-sub {
+      font-size: 0.67rem;
+      margin-top: 0.32rem;
+      letter-spacing: 0;
+      text-transform: none;
+      font-family: 'Cormorant Garamond', serif;
+      white-space: nowrap;
+      opacity: 0.8;
+    }
+
+    /* â”€â”€â”€ PARTY MEMBERS â”€â”€â”€ */
+    .party-member {
+      background: rgba(201, 168, 76, 0.05);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.8rem;
+      border-radius: 2px;
+    }
+
+    .party-member-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    /* â”€â”€â”€ SUBMIT â”€â”€â”€ */
+    .submit-wrap {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 1.2rem;
+      background: #FFFFF0;
+      color: #000000;
+      border: 1px solid #000000;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      margin-top: 2rem;
+    }
+
+    .btn-submit:hover {
+      background: #f0f0e0;
+      transform: translateY(-2px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .submit-note {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      color: #777;
+      letter-spacing: 0.1em;
+    }
+
+    .status-msg {
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .status-msg.success {
+      background: rgba(39, 174, 96, 0.08);
+      border-left: 3px solid var(--success);
+      color: var(--success);
+      display: block;
+    }
+
+    .status-msg.error {
+      background: rgba(192, 57, 43, 0.08);
+      border-left: 3px solid var(--error);
+      color: var(--error);
+      display: block;
+    }
+
+    /* â”€â”€â”€ SUCCESS â”€â”€â”€ */
+    #success-state {
+      display: none;
+      text-align: center;
+      padding: 5rem 2rem;
+      animation: fadeInScale 0.8s ease-out;
+      color: #FFFFF0;
+    }
+    #success-state h2 { color: #FFFFF0; margin-bottom: 1rem; }
+    #success-state p { color: #FFFFF0; }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9)
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1)
+      }
+    }
+
+    @keyframes checkmark {
+      0% {
+        stroke-dashoffset: 100
+      }
+
+      100% {
+        stroke-dashoffset: 0
+      }
+    }
+
+    .success-checkmark {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem;
+      border-radius: 50%;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: popIn 0.5s ease-out 0.2s both;
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0)
+      }
+
+      70% {
+        transform: scale(1.2)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    .success-checkmark svg {
+      width: 40px;
+      height: 40px;
+      stroke: white;
+      stroke-width: 3;
+      fill: none;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: checkmark 0.6s ease-out 0.5s forwards;
+    }
+
+    #success-state h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #FFFFF0;
+    }
+
+    #success-state p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: #FFFFF0;
+      line-height: 1.9;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+
+    .proof-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .btn-proof {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: white;
+      padding: 0.9rem 1.8rem;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: background 0.25s ease, transform 0.2s ease;
+    }
+
+    .btn-proof:hover {
+      background: #a8863a;
+      transform: translateY(-1px);
+    }
+
+    .proof-note {
+      font-size: 0.72rem;
+      color: #FFFFF0;
+      letter-spacing: 0.04em;
+    }
+
+    /* â”€â”€â”€ EASY MODE TOGGLE â”€â”€â”€ */
+    .easy-toggle {
+      text-align: center;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .easy-toggle label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,240,0.6);
+      transition: color 0.2s;
+    }
+    .easy-toggle label:hover { color: var(--gold); }
+    .easy-toggle input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+    .advanced-section {
+      transition: all 0.3s ease;
+    }
+    .advanced-section.hidden {
+      display: none;
+    }
+
+    /* â”€â”€â”€ LATER STATE â”€â”€â”€ */
+    #later-state {
+      display: none;
+      text-align: center;
+      padding: 5rem 2rem;
+      animation: fadeInScale 0.8s ease-out;
+    }
+
+    #later-state .later-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      animation: popIn 0.5s ease-out both;
+    }
+
+    #later-state h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+
+    #later-state p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: #666;
+      line-height: 1.9;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    /* â”€â”€â”€ CONFIRM MODAL â”€â”€â”€ */
+    #confirm-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #confirm-modal.open {
+      display: flex;
+    }
+
+    .confirm-box {
+      background: #111;
+      padding: 2.5rem;
+      border: 1px solid rgba(255, 255, 240, 0.2);
+      border-radius: 12px;
+      max-width: 480px;
+      width: 90%;
+      text-align: center;
+      animation: fadeInScale 0.3s ease-out;
+      color: #FFFFF0;
+    }
+
+    .confirm-box h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #FFFFF0;
+    }
+
+    #confirm-content {
+      text-align: left;
+      margin: 1rem 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #FFFFF0;
+    }
+    #confirm-content p { color: #FFFFF0; margin-bottom: 0.5rem; }
+    #confirm-content strong { color: var(--gold); }
+
+    .confirm-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .confirm-actions button {
+      padding: 1rem 2rem;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .btn-edit {
+      border: 1px solid #FFFFF0;
+      background: transparent;
+      color: #FFFFF0;
+    }
+
+    .btn-confirm {
+      border: none;
+      background: #FFFFF0;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .btn-confirm:hover {
+      background: #a8863a;
+    }
+
+    @media(max-width:600px) {
+      nav {
+        gap: 0.45rem;
+        padding: 0.8rem 0.6rem;
+      }
+
+      nav a {
+        min-width: 0;
+        flex: 1 1 calc(50% - 0.45rem);
+        max-width: 170px;
+        padding: 0.5rem 0.45rem;
+        font-size: 0.62rem;
+        letter-spacing: 0.11em;
+        white-space: nowrap;
+      }
+
+      .rsvp-hero {
+        padding: 4rem 1rem 2.5rem;
+      }
+
+      .rsvp-container {
+        padding: 0 1rem 3rem;
+      }
+
+      .rsvp-hero p {
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+
+      .deadline {
+        padding: 0.45rem 0.9rem;
+        font-size: 0.58rem;
+        letter-spacing: 0.1em;
+        max-width: 100%;
+      }
+
+      .form-section {
+        margin-bottom: 2.2rem;
+      }
+
+      .form-section-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        gap: 0.45rem;
+      }
+
+      .form-group label {
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        font-size: 1rem;
+      }
+
+      .attend-label {
+        align-items: flex-start;
+        text-align: left;
+        min-height: 0;
+        padding: 0.95rem 0.85rem;
+      }
+
+      .attend-text {
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+      }
+
+      .attend-sub {
+        font-size: 0.72rem;
+        white-space: nowrap;
+      }
+
+      .btn-submit {
+        width: 100%;
+        padding: 1rem 0.8rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        background: #FFFFF0;
+        color: #000000;
+        border: 1px solid #000000;
+      }
+
+      .confirm-actions {
+        flex-direction: column;
+      }
+
+      .confirm-actions button {
+        width: 100%;
+      }
+
+      #success-state,
+      #later-state {
+        padding: 3.5rem 1rem;
+      }
+
+      #success-state h2,
+      #later-state h2 {
+        font-size: 2.35rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      .attendance-grid {
+        grid-template-columns: 1fr
+      }
+    }
+  
+    
+    /* --- COLOR & TRIM OVERRIDES V2 --- */
+    .hero-flourish, .hero-divider, 
+    .story-signature, .story-img-accent {
+        display: none !important;
+    }
+    
+    /* Restore Ampersand */
+    .hero-ampersand {
+        display: inline-block !important;
+        color: #000000 !important;
+    }
+    
+    /* Soft shadows on headings */
+    h1, h2, h3, .section-title, .hero-names, .gift-title {
+        text-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
+    }
+    
+    /* Black Nav Header & Buttons */
+    nav {
+        background: #000000 !important;
+        border-bottom: none !important;
+    }
+    nav a {
+        background: #000000 !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255,255,255,0.3) !important;
+    }
+    nav a:hover {
+        background: rgba(255,255,255,0.15) !important;
+        border-color: #ffffff !important;
+    }
+    
+    /* White Footer Text with Dark Background */
+    footer {
+        background: #000000 !important;
+        color: #ffffff !important;
+    }
+    footer .footer-names, footer p {
+        color: #ffffff !important;
+    }
+    /* Larger Date in Footer */
+    footer p:nth-of-type(1) {
+        font-size: clamp(2rem, 5vw, 3.2rem) !important;
+        margin-top: 1rem;
+    }
+
+  
+    /* --- PRIYANSHUGUPTA28 ANIMATED CHECKS --- */
+    .attend-option input[type="radio"] {
+      visibility: hidden;
+      display: none;
+    }
+    .attend-option .attend-label svg {
+      vertical-align: middle;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 0.8rem;
+    }
+    .attend-option .path1 {
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      transition: .5s stroke-dashoffset;
+      opacity: 0;
+    }
+    .attend-option input[type="radio"]:checked + .attend-label svg g .path1 {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    
+    
+
+  
+    /* --- PRAASHOO7-INSPIRED INPUT STYLING --- */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555;
+      font-weight: 600;
+    }
+
+    /* Pill-style input wrapper */
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #1a1a1a;
+      border-radius: 25px;
+      padding: 0.7rem 1.1rem;
+      box-shadow: inset 2px 5px 10px rgba(0,0,0,0.6);
+      transition: box-shadow 0.3s;
+    }
+
+    .input-wrap:focus-within {
+      box-shadow: inset 2px 5px 10px rgba(0,0,0,0.9), 0 0 0 2px rgba(255,255,255,0.1);
+    }
+
+    .input-wrap .input-icon {
+      width: 1.2em;
+      height: 1.2em;
+      fill: rgba(255,255,255,0.5);
+      flex-shrink: 0;
+    }
+
+    .form-group input,
+    .form-group select {
+      background: none;
+      border: none;
+      outline: none;
+      width: 100%;
+      color: #d3d3d3;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .form-group input::placeholder,
+    .form-group select::placeholder {
+      color: rgba(255,255,255,0.25);
+      font-style: italic;
+    }
+
+    .form-group select {
+      cursor: pointer;
+      color: #d3d3d3;
+    }
+
+    .form-group select option {
+      background: #1a1a1a;
+      color: #d3d3d3;
+    }
+
+    /* Keep textarea separate - full width, no pill */
+    .form-group textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 1rem 1.1rem;
+      border-radius: 16px;
+      border: none;
+      background: #1a1a1a;
+      box-shadow: inset 2px 5px 10px rgba(0,0,0,0.6);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: #d3d3d3;
+      resize: vertical;
+      outline: none;
+      transition: box-shadow 0.3s;
+    }
+
+    .form-group textarea:focus {
+      box-shadow: inset 2px 5px 10px rgba(0,0,0,0.9), 0 0 0 2px rgba(255,255,255,0.1);
+    }
+
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.25);
+      font-style: italic;
+    }
+
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html">Back</a>
+    <a href="#" style="color:var(--gold);pointer-events:none;">RSVP</a>
+  </nav>
+
+  <div class="rsvp-hero">
+    <p class="eyebrow">You Are Invited</p>
+    <h1>Jess &amp; Adriel</h1>
+    <p id="hero-sub">We would be honoured to have you celebrate with us.<br />Please complete your RSVP below.</p>
+    <div id="personal-greeting" style="display:none">
+      <p class="personal-greeting" id="greeting-text"></p>
+      <p class="personal-note" id="personal-note-text" style="display:none"></p>
+    </div>
+    <div class="deadline">Kindly respond by <span id="deadline-text"
+        style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; font-size: 1.35rem;">June
+        10, 2026</span></div>
+    <div style="margin-top: 1.5rem;">
+      <a href="#" onclick="resetRsvpForm(event)"
+        style="font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; border-bottom: 1px solid rgba(203, 169, 124, 0.3); padding-bottom: 2px;">Already
+        RSVP'd? Edit Response</a>
+    </div>
+  </div>
+
+  <div class="rsvp-container">
+    <div id="status-message" class="status-msg"></div>
+
+    <div class="easy-toggle">
+      <label>
+        <input type="checkbox" id="advanced-toggle" onchange="toggleAdvanced()" />
+        Show More Options
+      </label>
+    </div>
+
+    <div id="rsvp-form-wrap">
+
+      <!-- 1. PERSONAL INFO -->
+      <div class="form-section">
+        <div class="form-section-title"><span>01</span> Your Information</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name">First Name *</label>
+            <div class="input-wrap"><svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.029 10 8 10c-2.029 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/></svg>
+              <input type="text" id="first-name" placeholder="Your first name" required /></div>
+          </div>
+          <div class="form-group advanced-section">
+            <label for="last-name">Last Name (Optional)</label>
+            <div class="input-wrap"><svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.029 10 8 10c-2.029 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/></svg>
+              <input type="text" id="last-name" placeholder="Your last name" /></div>
+          </div>
+        </div>
+        <div class="advanced-section">
+          <div class="form-row" style="margin-top:1.5rem">
+            <div class="form-group">
+              <label for="email">Email Address (Optional)</label>
+              <div class="input-wrap"><svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"/></svg>
+                <input type="email" id="email" placeholder="your@email.com" /></div>
+            </div>
+            <div class="form-group">
+              <label for="phone">WhatsApp Number</label>
+              <div class="input-wrap"><svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
+                <input type="tel" id="phone" placeholder="+501 000 0000" onclick="toggleNumberPad()" onfocus="toggleNumberPad()" readonly /></div>
+              <div class="number-pad-container" id="number-pad">
+                <div class="number-pad">
+                  <button type="button" class="num-btn" onclick="appendDigit('1')">1</button>
+                  <button type="button" class="num-btn" onclick="appendDigit('2')">2</button>
+                  <button type="button" class="num-btn" onclick="appendDigit('3')">3</button>
+                  <button type="button" class="num-btn" onclick="appendDigit('4')">4</button>
+                  <button type="button" class="num-btn" onclick="appendDigit('5')">5</button>
+                  <button type="button" class="num-btn" onclick="appendDigit('6')">6</button>
+                  <button type="button" class="num-btn" onclick="appendDigit('7')">7</button>
+                  <button type="button" class="num-btn" onclick="appendDigit('8')">8</button>
+                  <button type="button" class="num-btn" onclick="appendDigit('9')">9</button>
+                  <button type="button" class="num-btn" onclick="appendDigit('+')">+</button>
+                  <button type="button" class="num-btn" onclick="appendDigit('0')">0</button>
+                  <button type="button" class="num-btn delete" onclick="deleteDigit()">DEL</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. ATTENDANCE -->
+      <div class="form-section">
+        <div class="form-section-title"><span>02</span> Will You Be Joining Us?</div>
+        <div class="attendance-grid">
+          <div class="attend-option">
+            <input type="radio" name="attendance" id="att-yes" value="attending" onchange="onAttendanceChange()" />
+            <label class="attend-label" for="att-yes">
+              <span class="attend-icon">
+                <svg width="48" height="48" viewBox="0 0 95 95" style="margin-bottom:0.5rem">
+                  <rect x="30" y="20" width="50" height="50" stroke="black" fill="none" stroke-width="2"></rect>
+                  <g transform="translate(0,-952.36222)">
+                    <path class="path1" d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4" stroke="black" stroke-width="3" fill="none"></path>
+                  </g>
+                </svg>
+              </span>
+              <span class="attend-text">Attending</span>
+              <span class="attend-sub">I will be there</span>
+            </label>
+          </div>
+          <div class="attend-option">
+            <input type="radio" name="attendance" id="att-later" value="later" onchange="onAttendanceChange()" />
+            <label class="attend-label" for="att-later">
+              <span class="attend-icon">
+                <svg width="48" height="48" viewBox="0 0 95 95" style="margin-bottom:0.5rem">
+                  <rect x="30" y="20" width="50" height="50" stroke="black" fill="none" stroke-width="2"></rect>
+                  <g transform="translate(0,-952.36222)">
+                    <path class="path1" d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4" stroke="black" stroke-width="3" fill="none"></path>
+                  </g>
+                </svg>
+              </span>
+              <span class="attend-text">Ask Later</span>
+              <span class="attend-sub">Need more time</span>
+            </label>
+          </div>
+          <div class="attend-option">
+            <input type="radio" name="attendance" id="att-no" value="declined" onchange="onAttendanceChange()" />
+            <label class="attend-label" for="att-no">
+              <span class="attend-icon">
+                <svg width="48" height="48" viewBox="0 0 95 95" style="margin-bottom:0.5rem">
+                  <rect x="30" y="20" width="50" height="50" stroke="black" fill="none" stroke-width="2"></rect>
+                  <g transform="translate(0,-952.36222)">
+                    <path class="path1" d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4" stroke="black" stroke-width="3" fill="none"></path>
+                  </g>
+                </svg>
+              </span>
+              <span class="attend-text">Not Attending</span>
+              <span class="attend-sub">I cannot attend</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. PARTY MEMBERS (couple / family) -->
+      <div class="form-section" id="party-section" style="display:none">
+        <div class="form-section-title"><span>03</span> Your Party</div>
+        <div id="party-members-list"></div>
+      </div>
+
+      <!-- 3. MESSAGE -->
+      <div class="form-section advanced-section" id="message-section">
+        <div class="form-section-title"><span>03</span> Leave Us a Message</div>
+        <div class="form-group">
+          <label for="message">Words of Wisdom, Congratulations, or Well Wishes</label>
+          <textarea id="message" placeholder="Share your love, advice, or wishes for Jess & Adriel and baby Izan..."></textarea>
+        </div>
+      </div>
+
+      <!-- 4. A LITTLE EXTRA -->
+      <div class="form-section advanced-section" id="extras-section">
+        <div class="form-section-title"><span id="extras-num">04</span> A Little Extra</div>
+        <div class="form-row single" style="margin-bottom:1.5rem">
+          <div class="form-group">
+            <label for="song">Song Request for the Dance Floor</label>
+            <div class="input-wrap"><svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2zM14 11V2h1v9h-1zM6 3v10H5V3h1z"/><path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/></svg>
+              <input type="text" id="song" placeholder="Song title - Artist" /></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBMIT -->
+      <div class="submit-wrap">
+        <button type="button" class="btn-submit" id="submit-btn" onclick="submitRSVP()">
+          Send My RSVP
+        </button>
+        <p class="submit-note" style="color:#FFFFF0">Your response will be shared with Jess &amp; Adriel.</p>
+      </div>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div id="success-state">
+      <div class="success-checkmark">
+        <svg viewBox="0 0 24 24">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h2>You're All Set!</h2>
+      <p id="success-text">Your RSVP has been received. We are so looking forward to celebrating with you at Maya Mopan in Belmopan!</p>
+      <div class="proof-actions">
+        <button type="button" class="btn-proof" onclick="downloadProofCard()">Download Invite Card (JPEG)</button>
+        <p class="proof-note">Includes your name, RSVP status, and event details.</p>
+      </div>
+      <a href="/"
+        style="font-size:0.8rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;">&lt;-
+        Return to Invitation</a>
+    </div>
+
+    <!-- ASK AGAIN LATER STATE -->
+    <div id="later-state">
+      <span class="later-icon">Later</span>
+      <h2>We'll Check Back!</h2>
+      <p id="later-text">No worries - we completely understand. We'll reach out closer to the date. We hope you can make
+        it.</p>
+      <div class="proof-actions">
+        <button type="button" class="btn-proof" onclick="downloadProofCard()">Download RSVP Card (JPEG)</button>
+        <p class="proof-note">Your card will show your current RSVP status as Ask Me Again Later.</p>
+      </div>
+      <a href="/"
+        style="font-size:0.8rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;">&lt;-
+        Return to Invitation</a>
+    </div>
+
+    <!-- CONFIRM MODAL -->
+    <div id="confirm-modal">
+      <div class="confirm-box">
+        <h3>Confirm Your RSVP</h3>
+        <div id="confirm-content"></div>
+        <div class="confirm-actions">
+          <button class="btn-edit" onclick="closeConfirm()">Edit</button>
+          <button class="btn-confirm" onclick="confirmSubmit()">Confirm &amp; Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer
+    style="background:var(--black);color:var(--ivory);text-align:center;padding:2rem;font-size:0.6rem;letter-spacing:0.2em;opacity:0.8;">
+    Jess &amp; Adriel Waight - June 13, 2026 - Baby Shower Izan Theodore Waight
+  </footer>
+
+  <script>
+    // Legacy link handling:
+    // If someone lands directly on /rsvp with a guest id, send them to intro card first.
+    const entryUrl = new URL(window.location.href);
+    const entryParams = new URLSearchParams(entryUrl.search);
+    if (entryParams.get('id') && entryParams.get('opened') !== '1') {
+      const redirectUrl = new URL('index.html', entryUrl);
+      redirectUrl.search = entryParams.toString();
+      window.location.replace(redirectUrl.toString());
+    }
+    // Force scroll to top on reload
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
+    // â”€â”€â”€ Convex Config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    const CONVEX_HTTP_URL = 'https://friendly-condor-189.convex.site';
+    const APPS_SCRIPT_URL = '';
+    
+    // Preload card photo for faster card generation
+    let cachedPhoto = null;
+    const photoPromise = (function() {
+      const img = new Image();
+      img.src = '';
+      img.onload = () => { cachedPhoto = img; };
+    })();
+    
+    function loadImage(src) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+      });
+    }
+
+    // â”€â”€â”€ Read URL params for personalisation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    const gUrl = new URL(window.location.href);
+    const params = gUrl.searchParams;
+    const getParam = (k) => params.get(k) || '';
+    const EASY_MODE = getParam('easy') === '1';
+    const GUEST_ID = getParam('id');
+    const GUEST_NAME = getParam('name');
+    const GUEST_SPOUSE = getParam('spouse');
+    const GUEST_TYPE = getParam('type') || 'single';   // single | couple | family
+    const MAX_PARTY = parseInt(getParam('max') || '1', 10);
+    const DEADLINE = getParam('due') || '2026-06-10';
+    const PERS_NOTE = getParam('msg') || '';
+    const EVENT_DATE_TEXT = 'Saturday, June 13, 2026';
+    const EVENT_LOCATION_TEXT = 'Belmopan, Maya Mopan';
+    const COUPLE_NAMES = 'Jess & Adriel';
+    let lastSubmittedCardData = null;
+
+    // Format deadline nicely
+    function fmtDeadline(iso) {
+      try {
+        return new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      } catch { return iso; }
+    }
+
+    // â”€â”€â”€ On load: personalise the page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('deadline-text').textContent = fmtDeadline(DEADLINE);
+
+      // Auto-enable Easy Mode by default (existing links out in the wild)
+      // Use ?advanced=1 to show full form
+      const isAdvanced = getParam('advanced') === '1';
+      if (isAdvanced) {
+        document.getElementById('advanced-toggle').checked = true;
+      } else {
+        toggleAdvanced();
+      }
+
+      if (GUEST_NAME) {
+        document.getElementById('personal-greeting').style.display = 'block';
+        let greeting = GUEST_NAME.split(' ')[0];
+        if (GUEST_SPOUSE) {
+          greeting += ` & ${GUEST_SPOUSE}`;
+        }
+        document.getElementById('greeting-text').textContent = `Dear ${greeting},`;
+
+        // Pre-fill name fields
+        const parts = GUEST_NAME.trim().split(' ');
+        document.getElementById('first-name').value = parts[0] || '';
+        document.getElementById('last-name').value = parts.slice(1).join(' ') || '';
+      }
+      if (PERS_NOTE) {
+        const noteEl = document.getElementById('personal-note-text');
+        noteEl.textContent = PERS_NOTE;
+        noteEl.style.display = 'block';
+      }
+
+      buildPartySection();
+    });
+
+    // â”€â”€â”€ Build party members section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    function buildPartySection() {
+      const section = document.getElementById('party-section');
+      const list = document.getElementById('party-members-list');
+
+      if (GUEST_TYPE === 'single' || MAX_PARTY <= 1) {
+        section.style.display = 'none';
+        renumberSections(false);
+        return;
+      }
+
+      section.style.display = 'block';
+      renumberSections(true);
+      list.innerHTML = '';
+
+      const label = GUEST_TYPE === 'couple' ? 'Spouse / Partner' : 'Family Member';
+      for (let i = 1; i < MAX_PARTY; i++) {
+        const isSpouse = (GUEST_TYPE === 'couple' && i === 1);
+        list.innerHTML += `
+          <div class="party-member">
+            <div class="party-member-title">${label} ${i}</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name ${isSpouse ? '(Optional)' : '*'}</label>
+                <input type="text" id="party-fn-${i}" placeholder="First name" value="${isSpouse && GUEST_SPOUSE ? GUEST_SPOUSE : ''}" />
+              </div>
+              <div class="form-group">
+                <label>Last Name (Optional)</label>
+                <input type="text" id="party-ln-${i}" placeholder="Last name" value="${isSpouse && document.getElementById('last-name').value ? document.getElementById('last-name').value : ''}" />
+              </div>
+            </div>
+          </div>`;
+      }
+    }
+
+    function renumberSections(hasParty) {
+      document.getElementById('extras-num').textContent = hasParty ? '04' : '03';
+    }
+
+    // â”€â”€â”€ Attendance change â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Number pad functions
+    function toggleNumberPad() {
+      const pad = document.getElementById('number-pad');
+      if (pad) {
+        pad.classList.add('active');
+      }
+    }
+
+    function toggleAdvanced() {
+      const isAdvanced = document.getElementById('advanced-toggle').checked;
+      document.querySelectorAll('.advanced-section').forEach(el => {
+        el.classList.toggle('hidden', !isAdvanced);
+      });
+    }
+
+    function appendDigit(digit) {
+      const phoneInput = document.getElementById('phone');
+      if (phoneInput) {
+        if (digit === '+' && !phoneInput.value.includes('+')) {
+          phoneInput.value += '+';
+        } else if (digit !== '+') {
+          phoneInput.value += digit;
+        }
+      }
+    }
+
+    function deleteDigit() {
+      const phoneInput = document.getElementById('phone');
+      if (phoneInput) {
+        phoneInput.value = phoneInput.value.slice(0, -1);
+      }
+    }
+
+    // Close number pad when clicking outside
+    document.addEventListener('click', function(e) {
+      const pad = document.getElementById('number-pad');
+      const phoneInput = document.getElementById('phone');
+      if (pad && !pad.contains(e.target) && e.target !== phoneInput) {
+        pad.classList.remove('active');
+      }
+    });
+
+    function onAttendanceChange() {
+      const val = document.querySelector('input[name="attendance"]:checked')?.value;
+      const showFull = val === 'attending';
+      document.getElementById('party-section').style.display = (showFull && GUEST_TYPE !== 'single' && MAX_PARTY > 1) ? 'block' : 'none';
+    }
+
+    // â”€â”€â”€ Collect party names â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    function getPartyNames() {
+      const names = [];
+      for (let i = 1; i < MAX_PARTY; i++) {
+        const fn = document.getElementById(`party-fn-${i}`)?.value.trim();
+        const ln = document.getElementById(`party-ln-${i}`)?.value.trim();
+        if (fn || ln) names.push(`${fn} ${ln}`.trim());
+      }
+      return names.join(', ');
+    }
+
+    // â”€â”€â”€ Submit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    function submitRSVP() {
+      const statusEl = document.getElementById('status-message');
+      statusEl.className = 'status-msg';
+      statusEl.style.display = 'none';
+
+      const firstName = document.getElementById('first-name').value.trim();
+      const lastName = document.getElementById('last-name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
+
+      if (!firstName) { showStatus('error', 'Please enter your first name.'); return; }
+      if (!attendance) { showStatus('error', "Please select your attendance."); return; }
+
+      // "Ask Again Later" submits immediately
+      if (attendance === 'later') {
+        const payload = {
+          guest_id: GUEST_ID || undefined,
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          phone: phone || undefined,
+          guest_type: GUEST_TYPE,
+          attendance: 'later',
+          submitted_at: new Date().toISOString()
+        };
+        const btn = document.getElementById('submit-btn');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        postRsvp(payload).then(() => {
+          lastSubmittedCardData = makeCardData({
+            first_name: firstName,
+            last_name: lastName,
+            attendance: 'later',
+            submitted_at: payload.submitted_at
+          });
+          document.getElementById('rsvp-form-wrap').style.display = 'none';
+          const lt = document.getElementById('later-text');
+          lt.textContent = `No worries, ${firstName} - we completely understand. We'll reach out closer to June 10th. We hope you can make it.`;
+          document.getElementById('later-state').style.display = 'block';
+        }).catch((err) => {
+          showStatus('error', formatRsvpError(err));
+          btn.textContent = 'Send My RSVP';
+          btn.disabled = false;
+        });
+        return;
+      }
+
+      // Show confirmation modal for attending/declined
+      const party = getPartyNames();
+      const song = document.getElementById('song').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      document.getElementById('confirm-content').innerHTML = `
+        <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+        <p><strong>Attending:</strong> ${attendance === 'attending' ? "Accepts with Pleasure" : "Declines with Regret"}</p>
+        ${party ? `<p><strong>Party:</strong> ${party}</p>` : ''}
+        ${song ? `<p><strong>Song:</strong> ${song}</p>` : ''}
+        ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
+      `;
+      document.getElementById('confirm-modal').classList.add('open');
+    }
+
+    function closeConfirm() {
+      document.getElementById('confirm-modal').classList.remove('open');
+    }
+
+    function confirmSubmit() {
+      closeConfirm();
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'Sending...'; btn.disabled = true;
+
+      const firstName = document.getElementById('first-name').value.trim();
+      const lastName = document.getElementById('last-name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
+      const partyNames = getPartyNames();
+      const song = document.getElementById('song').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const submittedAt = new Date().toISOString();
+
+      postRsvp({
+        guest_id: GUEST_ID || undefined,
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        phone: phone || undefined,
+        attendance,
+        guest_type: GUEST_TYPE,
+        party_names: partyNames || undefined,
+        song_request: song || undefined,
+        message: message || undefined,
+        submitted_at: submittedAt
+      }).then(() => {
+        lastSubmittedCardData = makeCardData({
+          first_name: firstName,
+          last_name: lastName,
+          attendance,
+          submitted_at: submittedAt,
+          party_names: partyNames || undefined
+        });
+        document.getElementById('rsvp-form-wrap').style.display = 'none';
+        document.getElementById('success-state').style.display = 'block';
+        const msgs = {
+          attending: `We are beyond excited to celebrate with you, ${firstName}! See you at Maya Mopan in Belmopan!`,
+          declined: `We'll miss you dearly, ${firstName}. Thank you for letting us know.`
+        };
+        document.getElementById('success-text').textContent = msgs[attendance] || msgs.attending;
+      }).catch((err) => {
+        showStatus('error', formatRsvpError(err));
+        btn.textContent = 'Send My RSVP';
+        btn.disabled = false;
+      });
+    }
+
+    async function postRsvp(payload) {
+      const res = await fetch(`${CONVEX_HTTP_URL}/api/rsvp`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const raw = await res.text();
+      let parsed = null;
+      try {
+        parsed = raw ? JSON.parse(raw) : null;
+      } catch {
+        parsed = null;
+      }
+      if (!res.ok) {
+        const error = new Error(parsed?.error || raw || 'Submit failed');
+        error.code = parsed?.code || 'submit_failed';
+        error.expectedName = parsed?.expectedName || undefined;
+        throw error;
+      }
+      
+      // Also post song and message to Google Sheets
+      const guestName = `${payload.first_name} ${payload.last_name}`;
+      if (payload.song_request) {
+        fetch(`${APPS_SCRIPT_URL}?sheet=Songs`, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: guestName, content: payload.song_request })
+        }).catch((e) => console.log('Songs log err:', e));
+      }
+      if (payload.message) {
+        fetch(`${APPS_SCRIPT_URL}?sheet=Messages`, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: guestName, content: payload.message })
+        }).catch((e) => console.log('Messages log err:', e));
+      }
+      
+      return parsed ?? {};
+    }
+
+    function formatRsvpError(err) {
+      const code = err?.code || '';
+      if (code === 'name_mismatch') {
+        const expected = err?.expectedName ? ` Expected name: ${err.expectedName}.` : '';
+        return `Name does not match this invite.${expected} Contact the event manager if this is incorrect.`;
+      }
+      if (code === 'guest_not_found') {
+        return 'This name is not on the guest list for this invite. Contact the event manager to verify your RSVP.';
+      }
+      if (code === 'ambiguous_name') {
+        return 'Multiple guests match this name. Contact the event manager so we can confirm the correct invite.';
+      }
+      return err?.message || 'Unable to submit RSVP right now.';
+    }
+
+    function attendanceLabel(status) {
+      const map = {
+        attending: 'Accepts with Pleasure',
+        declined: 'Declines with Regret',
+        later: 'Ask Me Again Later',
+        invited: 'Invited'
+      };
+      return map[status] || String(status || 'Invited');
+    }
+
+    function guestTypeLabel(type) {
+      const map = { single: 'Single', couple: 'Couple', family: 'Family' };
+      return map[type] || 'Single';
+    }
+
+    function parsePartyNames(value) {
+      return String(value || '')
+        .split(',')
+        .map((name) => name.trim())
+        .filter(Boolean);
+    }
+
+    function dedupeNames(names) {
+      const seen = new Set();
+      const out = [];
+      for (const item of names) {
+        const name = String(item || '').trim();
+        if (!name) continue;
+        const key = name.toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
+        out.push(name);
+      }
+      return out;
+    }
+
+    function makeCardData(input = {}) {
+      const first = String(input.first_name || document.getElementById('first-name')?.value || '').trim();
+      const last = String(input.last_name || document.getElementById('last-name')?.value || '').trim();
+      const primaryName = `${first} ${last}`.trim() || 'Guest';
+
+      let spName = '';
+      if (GUEST_TYPE === 'couple') {
+        const sFn = document.getElementById('party-fn-1')?.value || '';
+        const sLn = document.getElementById('party-ln-1')?.value || last;
+        if (sFn) spName = `${sFn} ${sLn}`.trim();
+      }
+
+      const partySource = input.party_names != null ? input.party_names : getPartyNames();
+      const partyNamesRaw = String(partySource || '').trim();
+      const partyNames = parsePartyNames(partyNamesRaw);
+      const guestNames = dedupeNames([primaryName, spName, ...partyNames]);
+      return {
+        fullName: primaryName,
+        partyNames: partyNamesRaw || undefined,
+        guestNames,
+        attendance: input.attendance || document.querySelector('input[name="attendance"]:checked')?.value || 'invited',
+        guestType: GUEST_TYPE || 'single',
+        maxParty: Number.isFinite(MAX_PARTY) ? MAX_PARTY : 1,
+        submittedAt: input.submitted_at || new Date().toISOString(),
+        guestId: GUEST_ID || 'guest',
+      };
+    }
+
+    function fileSafe(value) {
+      return String(value || '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .slice(0, 40) || 'guest';
+    }
+
+    function drawRoundedRectPath(ctx, x, y, width, height, radius) {
+      const r = Math.max(0, Math.min(radius, width / 2, height / 2));
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + width - r, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+      ctx.lineTo(x + width, y + height - r);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+      ctx.lineTo(x + r, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    function fitText(ctx, text, maxWidth) {
+      const source = String(text || '');
+      if (!source) return '';
+      if (ctx.measureText(source).width <= maxWidth) return source;
+      let trimmed = source;
+      while (trimmed.length > 3 && ctx.measureText(`${trimmed}...`).width > maxWidth) {
+        trimmed = trimmed.slice(0, -1);
+      }
+      return `${trimmed}...`;
+    }
+
+    function drawFittedScriptName(ctx, text, x, y, maxWidth, startSize = 64, minSize = 40) {
+      let size = startSize;
+      while (size > minSize) {
+        ctx.font = `${size}px "Great Vibes", "Times New Roman", serif`;
+        if (ctx.measureText(text).width <= maxWidth) break;
+        size -= 2;
+      }
+      ctx.fillText(text, x, y);
+      return size;
+    }
+
+    async function drawProofCardCanvas(card) {
+      const canvas = document.createElement('canvas');
+      const w = 1600;
+      const h = 980;
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+
+      // Soft ivory background
+      ctx.fillStyle = '#FFFDF9';
+      ctx.fillRect(0, 0, w, h);
+
+      // Gold decorative frame
+      ctx.strokeStyle = '#d4af37';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(24, 24, w - 48, h - 48);
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(40, 40, w - 80, h - 80);
+
+      // Right-side photo panel
+      const photoX = 980;
+      const photoY = 74;
+      const photoW = 560;
+      const photoH = h - 148;
+      drawRoundedRectPath(ctx, photoX, photoY, photoW, photoH, 26);
+      ctx.save();
+      ctx.clip();
+      try {
+        let photo = cachedPhoto;
+        if (!photo) photo = await loadImage('photos/main-card-photo.gif');
+        const ratio = Math.max(photoW / photo.width, photoH / photo.height);
+        const drawW = photo.width * ratio;
+        const drawH = photo.height * ratio;
+        const dx = photoX + (photoW - drawW) / 2;
+        const dy = photoY + (photoH - drawH) / 2;
+        ctx.drawImage(photo, dx, dy, drawW, drawH);
+      } catch {
+        ctx.fillStyle = '#F7E7CE';
+        ctx.fillRect(photoX, photoY, photoW, photoH);
+      }
+      ctx.restore();
+
+      drawRoundedRectPath(ctx, photoX, photoY, photoW, photoH, 26);
+      ctx.strokeStyle = '#d4af37';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      const leftX = 92;
+      const leftWidth = 840;
+      const statusMap = {
+        attending: { bg: '#d4af37', border: '#000000', text: '#FFFFFF' },
+        declined: { bg: '#000000', border: '#d4af37', text: '#FAF5EF' },
+        later: { bg: '#F7E7CE', border: '#d4af37', text: '#000000' },
+      };
+      const statusStyle = statusMap[card.attendance] || statusMap.later;
+      const guestNames = Array.isArray(card.guestNames) && card.guestNames.length
+        ? card.guestNames
+        : [card.fullName];
+
+      // Header - all black
+      ctx.fillStyle = '#d4af37';
+      ctx.font = '600 20px Montserrat, sans-serif';
+      ctx.fillText('RSVP CONFIRMATION CARD', leftX, 110);
+
+      ctx.fillStyle = '#d4af37';
+      ctx.font = '80px "Great Vibes", "Times New Roman", serif';
+      ctx.fillText('Jess & Adriel', leftX, 196);
+
+      ctx.fillStyle = '#000000';
+      ctx.font = 'italic 32px "Cormorant Garamond", Georgia, serif';
+      ctx.fillText(EVENT_DATE_TEXT, leftX, 244);
+      
+      // Location on its own line, bigger font
+      ctx.fillStyle = '#d4af37';
+      ctx.font = 'italic 28px "Cormorant Garamond", Georgia, serif';
+      ctx.fillText('The The Gully Grill', leftX, 284);
+      ctx.fillStyle = '#000000';
+      ctx.font = 'italic 22px "Cormorant Garamond", Georgia, serif';
+      ctx.fillText('San Ignacio, Belize', leftX, 314);
+
+      // Guest names block
+      ctx.fillStyle = '#000000';
+      ctx.font = '600 22px Montserrat, sans-serif';
+      const guestLabel = guestNames.length > 1 ? `${guestNames.length} Guests Invited` : 'Guest Invited';
+      ctx.fillText(guestLabel, leftX, 340);
+
+      let namesY = 408;
+      const maxNameWidth = leftWidth - 48;
+      const displayNames = guestNames.slice(0, 4);
+      for (const name of displayNames) {
+        ctx.fillStyle = '#000000';
+        const usedSize = drawFittedScriptName(ctx, name, leftX, namesY, maxNameWidth, 62, 38);
+        namesY += usedSize + 16;
+      }
+      if (guestNames.length > displayNames.length) {
+        ctx.fillStyle = '#000000';
+        ctx.font = '500 18px Montserrat, sans-serif';
+        ctx.fillText(`+${guestNames.length - displayNames.length} more`, leftX, namesY + 4);
+        namesY += 24;
+      }
+
+      // RSVP status pill
+      const statusY = namesY + 16;
+      const statusW = leftWidth - 30;
+      const statusH = 60;
+      drawRoundedRectPath(ctx, leftX, statusY, statusW, statusH, 16);
+      ctx.fillStyle = statusStyle.bg;
+      ctx.fill();
+      ctx.strokeStyle = statusStyle.border;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.fillStyle = statusStyle.text;
+      ctx.font = '700 24px "Cormorant Garamond", Georgia, serif';
+      ctx.fillText(attendanceLabel(card.attendance), leftX + 20, statusY + 38);
+
+      // Detail rows
+      let rowY = statusY + 98;
+      const rowGap = 42;
+      const valueX = leftX + 190;
+      const valueWidth = leftWidth - 220;
+      const addRow = (label, value) => {
+        ctx.fillStyle = '#000000';
+        ctx.font = '600 17px Montserrat, sans-serif';
+        ctx.fillText(label, leftX, rowY);
+        ctx.fillStyle = '#000000';
+        ctx.font = '600 21px "Cormorant Garamond", Georgia, serif';
+        ctx.fillText(fitText(ctx, value, valueWidth), valueX, rowY);
+        rowY += rowGap;
+      };
+
+      addRow('Invite Type', `${guestTypeLabel(card.guestType)} - Up to ${card.maxParty}`);
+      addRow('Validated', new Date(card.submittedAt).toLocaleString());
+      addRow('Reference', String(card.guestId).slice(-8).toUpperCase());
+
+      // QR Code - Bottom of left side, within card
+      const qrSize = 160;
+      const qrX = 600;
+      const qrY = h - qrSize - 80;
+      
+      // QR label
+      ctx.fillStyle = '#d4af37';
+      ctx.font = 'italic 16px "Cormorant Garamond", Georgia, serif';
+      ctx.fillText('\u275E Present this at the event', qrX, qrY - 20);
+      
+      // QR background with black border (outside card)
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(qrX - 6, qrY - 6, qrSize + 12, qrSize + 12);
+      ctx.strokeStyle = '#000000';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(qrX - 6, qrY - 6, qrSize + 12, qrSize + 12);
+      
+      // Generate QR code
+      const guestFullName = encodeURIComponent(card.fullName || 'Guest');
+      const checkinUrl = `https://wedinvitation-ruddy.vercel.app/checkin.html?id=${card.guestId}&name=${guestFullName}`;
+      try {
+        const qr = qrcode(0, 'M');
+        qr.addData(checkinUrl);
+        qr.make();
+        const moduleCount = qr.getModuleCount();
+        const cellSize = qrSize / moduleCount;
+        ctx.fillStyle = '#000000';
+        for (let row = 0; row < moduleCount; row++) {
+          for (let col = 0; col < moduleCount; col++) {
+            if (qr.isDark(row, col)) {
+              ctx.fillRect(qrX + col * cellSize, qrY + row * cellSize, cellSize + 0.5, cellSize + 0.5);
+            }
+          }
+        }
+      } catch (e) {}
+
+      return canvas;
+    }
+
+    async function downloadProofCard() {
+      try {
+        const card = lastSubmittedCardData || makeCardData();
+        if (!card.fullName || !card.attendance) {
+          showStatus('error', 'Please complete RSVP details before downloading your card.');
+          return;
+        }
+
+        if (document.fonts?.ready) {
+          await document.fonts.ready;
+        }
+
+        const canvas = await drawProofCardCanvas(card);
+        const url = canvas.toDataURL('image/jpeg', 0.92);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `rsvp-card-${fileSafe(card.fullName)}.jpg`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } catch (err) {
+        showStatus('error', 'Could not generate card right now. Please try again.');
+      }
+    }
+
+    function showStatus(type, msg) {
+      const el = document.getElementById('status-message');
+      el.className = `status-msg ${type}`;
+      el.textContent = msg;
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function resetRsvpForm(e) {
+      if (e) e.preventDefault();
+      // Reset form display
+      document.getElementById('rsvp-form-wrap').style.display = 'block';
+      document.getElementById('success-state').style.display = 'none';
+      document.getElementById('later-state').style.display = 'none';
+
+      // Reset button
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'Submit RSVP';
+      btn.disabled = false;
+
+      // Scroll to form
+      document.querySelector('.rsvp-container').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+
+</html>

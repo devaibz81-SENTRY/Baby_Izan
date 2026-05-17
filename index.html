@@ -53,7 +53,7 @@
   @keyframes floatBaby{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-12px) rotate(4deg)}75%{transform:translateY(-6px) rotate(-3deg)}}
 
   /* â”€â”€ Section decorations (SVGs inside sections, parallax scroll) â”€â”€ */
-  .deco{position:absolute;pointer-events:none;z-index:1;backface-visibility:hidden;will-change:transform,opacity;opacity:0}
+  .deco{position:absolute;pointer-events:none;z-index:1;backface-visibility:hidden;will-change:transform}
   .deco svg{display:block;height:auto}
   .deco-l{left:clamp(10px,2.5vw,28px)}
   .deco-r{right:clamp(10px,2.5vw,28px)}
@@ -651,7 +651,7 @@
           const sy = window.scrollY;
           if (bg) bg.style.transform = 'translateY(' + (sy * 0.08) + 'px)';
 
-          // Section decoration parallax + pop-in
+          // Section decoration parallax
           decos.forEach((d, i) => {
             const rect = d.getBoundingClientRect();
             const vh = window.innerHeight;
@@ -659,10 +659,6 @@
             const rates = [0.18, 0.30, 0.10, 0.25, 0.14];
             const drift = (centerDist - 0.5) * 50 * (rates[i % rates.length]);
             d.style.transform = 'translateY(' + drift + 'px)';
-            // Pop in as element enters viewport
-            const pop = clamp(1 - (rect.top - vh * 0.85) / (vh * 0.5), 0, 1);
-            d.style.opacity = pop * pop;
-            d.style.scale = 0.4 + 0.6 * pop;
           });
 
           // Section 2 â€” scroll-driven fade

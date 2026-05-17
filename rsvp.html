@@ -1192,14 +1192,31 @@
         </div>
       </div>
 
-      <!-- 4. A LITTLE EXTRA -->
-      <div class="form-section advanced-section" id="extras-section">
-        <div class="form-section-title"><span id="extras-num">04</span> A Little Extra</div>
+      <!-- 4. GIFT CARD -->
+      <div class="form-section advanced-section" id="gift-section">
+        <div class="form-section-title"><span>04</span> Don't Know What to Bring?</div>
         <div class="form-row single" style="margin-bottom:1.5rem">
           <div class="form-group">
-            <label for="song">Song Request for the Dance Floor</label>
-            <div class="input-wrap"><svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2zM14 11V2h1v9h-1zM6 3v10H5V3h1z"/><path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/></svg>
-              <input type="text" id="song" placeholder="Song title - Artist" /></div>
+            <p style="font-size:0.85rem;line-height:1.7;color:rgba(255,255,240,0.8);margin-bottom:1rem;">
+              Your presence is the greatest gift of all. If you were thinking of something extra, a monetary contribution towards baby Izan's future is warmly welcomed.
+            </p>
+            <div style="background:rgba(255,255,240,0.05);border:1px solid rgba(201,168,76,0.3);padding:1.2rem;border-radius:6px;">
+              <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Bank Details</div>
+              <div style="display:grid;gap:0.6rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem;">
+                  <span style="color:rgba(255,255,240,0.5);">Bank:</span>
+                  <span id="bank-name" style="color:#FFFFF0;">First Caribbean Bank</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem;">
+                  <span style="color:rgba(255,255,240,0.5);">Account Name:</span>
+                  <span id="acct-name" style="color:#FFFFF0;">Jess & Adriel Waight</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem;">
+                  <span style="color:rgba(255,255,240,0.5);">Account Number:</span>
+                  <span id="acct-number" style="color:#FFFFF0;cursor:pointer;" onclick="copyToClipboard('acct-number')">1234567890</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1367,12 +1384,10 @@
 
       if (GUEST_TYPE === 'single' || MAX_PARTY <= 1) {
         section.style.display = 'none';
-        renumberSections(false);
         return;
       }
 
       section.style.display = 'block';
-      renumberSections(true);
       list.innerHTML = '';
 
       const label = GUEST_TYPE === 'couple' ? 'Spouse / Partner' : 'Family Member';
@@ -1395,9 +1410,7 @@
       }
     }
 
-    function renumberSections(hasParty) {
-      document.getElementById('extras-num').textContent = hasParty ? '04' : '03';
-    }
+
 
     // â”€â”€â”€ Attendance change â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Number pad functions
@@ -1446,6 +1459,23 @@
       const val = document.querySelector('input[name="attendance"]:checked')?.value;
       const showFull = val === 'attending';
       document.getElementById('party-section').style.display = (showFull && GUEST_TYPE !== 'single' && MAX_PARTY > 1) ? 'block' : 'none';
+    }
+
+    function copyToClipboard(id) {
+      const el = document.getElementById(id);
+      const text = el.textContent.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = el.textContent;
+        el.textContent = 'Copied!';
+        el.style.color = '#2ecc71';
+        setTimeout(() => { el.textContent = orig; el.style.color = ''; }, 1500);
+      }).catch(() => {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      });
     }
 
     // â”€â”€â”€ Collect party names â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -1510,14 +1540,12 @@
 
       // Show confirmation modal for attending/declined
       const party = getPartyNames();
-      const song = document.getElementById('song').value.trim();
       const message = document.getElementById('message').value.trim();
 
       document.getElementById('confirm-content').innerHTML = `
         <p><strong>Name:</strong> ${firstName} ${lastName}</p>
         <p><strong>Attending:</strong> ${attendance === 'attending' ? "Accepts with Pleasure" : "Declines with Regret"}</p>
         ${party ? `<p><strong>Party:</strong> ${party}</p>` : ''}
-        ${song ? `<p><strong>Song:</strong> ${song}</p>` : ''}
         ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
       `;
       document.getElementById('confirm-modal').classList.add('open');
@@ -1538,7 +1566,6 @@
       const phone = document.getElementById('phone').value.trim();
       const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
       const partyNames = getPartyNames();
-      const song = document.getElementById('song').value.trim();
       const message = document.getElementById('message').value.trim();
       const submittedAt = new Date().toISOString();
 
@@ -1551,7 +1578,6 @@
         attendance,
         guest_type: GUEST_TYPE,
         party_names: partyNames || undefined,
-        song_request: song || undefined,
         message: message || undefined,
         submitted_at: submittedAt
       }).then(() => {
@@ -1596,16 +1622,8 @@
         throw error;
       }
       
-      // Also post song and message to Google Sheets
+      // Also post message to Google Sheets
       const guestName = `${payload.first_name} ${payload.last_name}`;
-      if (payload.song_request) {
-        fetch(`${APPS_SCRIPT_URL}?sheet=Songs`, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: guestName, content: payload.song_request })
-        }).catch((e) => console.log('Songs log err:', e));
-      }
       if (payload.message) {
         fetch(`${APPS_SCRIPT_URL}?sheet=Messages`, {
           method: 'POST',

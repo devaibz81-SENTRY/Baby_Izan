@@ -688,6 +688,7 @@
     <div class="nav-label">Management</div>
     <div class="nav-item active" onclick="showView('guests', event)">Guests Data</div>
     <div class="nav-item" onclick="showView('messages', event)">Messages</div>
+    <div class="nav-item" onclick="showView('guide', event)">Guide / Rules</div>
     <div class="nav-label">Public Pages</div>
     <a href="index.html" class="nav-item" target="_blank">🎉 Invitation</a>
     <a href="rsvp.html" class="nav-item" target="_blank">📋 RSVP</a>
@@ -768,6 +769,69 @@
         </div>
         <div id="messages-list" style="display:grid;gap:1rem;">
           <p style="color:#999;">Loading messages...</p>
+        </div>
+      </div>
+
+      <!-- GUIDE VIEW -->
+      <div id="view-guide" style="display:none;">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--black);margin-bottom:1.5rem;">RSVP Rules &amp; Guest List Guide</h2>
+
+        <div style="background:#fff;border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;">
+          <h3 style="font-size:0.85rem;font-weight:600;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">Guest Types</h3>
+          <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+            <tr style="border-bottom:1px solid #eee;">
+              <td style="padding:0.6rem 0;font-weight:600;width:100px;">Single</td>
+              <td style="padding:0.6rem 0;color:#666;">1 person. No party section shown on the RSVP form. Use for individual invitees.</td>
+            </tr>
+            <tr style="border-bottom:1px solid #eee;">
+              <td style="padding:0.6rem 0;font-weight:600;">Couple</td>
+              <td style="padding:0.6rem 0;color:#666;">2 people (lead + spouse/partner). Shows spouse name field. Use for married couples, engaged couples, or partners living together.</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0;font-weight:600;">Family</td>
+              <td style="padding:0.6rem 0;color:#666;">2–10 people. Shows family member fields. Use for households with children or extended family.</td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="background:#fff;border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;">
+          <h3 style="font-size:0.85rem;font-weight:600;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">How Invite Links Work</h3>
+          <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+            <tr style="border-bottom:1px solid #eee;">
+              <td style="padding:0.6rem 0;font-weight:600;width:100px;">With <code>id</code></td>
+              <td style="padding:0.6rem 0;color:#666;">The RSVP is linked to the existing guest record. When they submit, their attendance status updates automatically in this admin panel. No duplicate records are created.</td>
+            </tr>
+            <tr style="border-bottom:1px solid #eee;">
+              <td style="padding:0.6rem 0;font-weight:600;">Without <code>id</code></td>
+              <td style="padding:0.6rem 0;color:#666;">The RSVP form works but creates a NEW guest record on submit. Use for walk-ins or unregistered guests. Phone is required in this case.</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0;font-weight:600;">Pre-fill</td>
+              <td style="padding:0.6rem 0;color:#666;">URL can also carry <code>name</code>, <code>spouse</code>, <code>type</code>, <code>max</code>, <code>due</code>, and <code>msg</code> to personalise the greeting and pre-fill fields.</td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="background:#fff;border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;">
+          <h3 style="font-size:0.85rem;font-weight:600;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">Best Practices</h3>
+          <ol style="padding-left:1.2rem;font-size:0.8rem;color:#444;line-height:2;">
+            <li><strong>Always create guests here first,</strong> then use the WhatsApp button to send their personalised link. This ensures the <code>id</code> parameter is in the URL.</li>
+            <li><strong>Set <code>max_party</code> correctly:</strong> 1 for single, 2 for couple, the actual headcount for family.</li>
+            <li><strong>Set a deadline</strong> (default is June 10, 2026 — 3 days before the event).</li>
+            <li><strong>Check the Not Responded filter</strong> regularly to see who hasn't replied and follow up.</li>
+            <li><strong>"Ask Again Later"</strong> submits immediately with no party details required — the guest just wants a reminder closer to the date.</li>
+            <li><strong>Messages</strong> from guests go to the Messages inbox, separate from the RSVP data.</li>
+          </ol>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e74c3c;border-radius:8px;padding:1.5rem;">
+          <h3 style="font-size:0.85rem;font-weight:600;color:#e74c3c;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">Common Pitfalls to Avoid</h3>
+          <ul style="padding-left:1.2rem;font-size:0.8rem;color:#444;line-height:2;">
+            <li><strong>Don't send an invite link without the <code>id</code></strong> — guests can still RSVP but it creates a new, unlinked record instead of updating theirs.</li>
+            <li><strong>Don't delete a guest who has already RSVP'd</strong> — you'll lose their attendance response.</li>
+            <li><strong>Don't edit a guest's name or ID after sending the link</strong> — the old link becomes stale. If you must edit, send the new link.</li>
+            <li><strong>Don't send links manually via SMS</strong> — always use the WhatsApp button so the correct personalised message + link is sent.</li>
+          </ul>
         </div>
       </div>
 
@@ -922,9 +986,10 @@
 
       document.getElementById('view-guests').style.display = view === 'guests' ? 'block' : 'none';
       document.getElementById('view-messages').style.display = view === 'messages' ? 'block' : 'none';
+      document.getElementById('view-guide').style.display = view === 'guide' ? 'block' : 'none';
       document.getElementById('add-guest-btn').style.display = view === 'guests' ? 'inline-flex' : 'none';
 
-      const titles = { guests: 'Guest Management', messages: 'Guest Messages' };
+      const titles = { guests: 'Guest Management', messages: 'Guest Messages', guide: 'Guide / Rules' };
       document.getElementById('view-title').textContent = titles[view] || 'Guest Management';
 
       if (view === 'messages') fetchMessages();

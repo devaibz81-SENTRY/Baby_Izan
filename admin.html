@@ -712,6 +712,20 @@
     <div id="content">
       <!-- GUEST LIST VIEW -->
       <div id="view-guests">
+        <!-- Walk-in RSVP Link -->
+        <div style="background:linear-gradient(135deg,#fff9f0,#fff);border:2px solid var(--gold);border-radius:10px;padding:1rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+          <div>
+            <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:0.3rem;">Walk-in / Open Invite</div>
+            <div style="font-size:0.85rem;color:#555;">Share this link so anyone can RSVP without a personalised invite</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.6rem;flex-shrink:0;">
+            <input type="text" id="walkin-link" value="https://baby-izan.vercel.app/rsvp.html" readonly
+              style="background:#f5f0e8;border:1px solid rgba(201,168,76,0.3);border-radius:4px;padding:0.5rem 0.8rem;font-size:0.75rem;color:var(--black);width:260px;font-family:monospace;"
+              onclick="this.select()" />
+            <button onclick="copyWalkinLink()"
+              style="background:var(--gold);color:white;border:none;border-radius:4px;padding:0.5rem 1rem;font-size:0.75rem;cursor:pointer;white-space:nowrap;font-weight:500;">Copy Link</button>
+          </div>
+        </div>
         <div class="stats-grid">
           <div class="stat-card green">
             <div class="stat-label">Attending</div>
@@ -963,6 +977,19 @@
       } catch {
         return false;
       }
+    }
+
+    function copyWalkinLink() {
+      const input = document.getElementById('walkin-link');
+      input.select();
+      navigator.clipboard.writeText(input.value).then(() => {
+        const btn = input.nextElementSibling;
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = orig; }, 1500);
+      }).catch(() => {
+        alert('Copy failed. Select the link manually.');
+      });
     }
 
     function toggleSidebar() {

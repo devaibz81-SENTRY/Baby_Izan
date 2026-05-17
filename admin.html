@@ -719,7 +719,7 @@
             <div style="font-size:0.85rem;color:#555;">Share this link so anyone can RSVP without a personalised invite</div>
           </div>
           <div style="display:flex;align-items:center;gap:0.6rem;flex-shrink:0;">
-            <input type="text" id="walkin-link" value="https://baby-izan.vercel.app/rsvp.html" readonly
+            <input type="text" id="walkin-link" value="https://baby-izan.vercel.app/" readonly
               style="background:#f5f0e8;border:1px solid rgba(201,168,76,0.3);border-radius:4px;padding:0.5rem 0.8rem;font-size:0.75rem;color:var(--black);width:260px;font-family:monospace;"
               onclick="this.select()" />
             <button onclick="copyWalkinLink()"
@@ -982,8 +982,8 @@
     }
 
     function shareWalkinWhatsApp() {
-      const link = 'https://baby-izan.vercel.app/rsvp.html';
-      const text = `Hi! You're invited to the baby shower of Izan Theodore Waight.\n\nOpen this link to RSVP:\n${link}\n\nJust fill in your name and details — no special invite needed.\n\nWith love,\nJess & Adriel`;
+      const link = 'https://baby-izan.vercel.app/';
+      const text = `Hi! You're invited to the baby shower of Izan Theodore Waight.\n\nTap the link to see your invitation and RSVP:\n${link}\n\nWith love,\nJess & Adriel`;
       window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     }
 

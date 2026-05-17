@@ -578,6 +578,19 @@
 <script>
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // â”€â”€ Carry URL params to RSVP link â”€â”€
+  (function() {
+    var sp = new URLSearchParams(window.location.search);
+    if (sp.get('id')) {
+      var btn = document.querySelector('.rsvp-btn');
+      if (btn) {
+        var keep = ['id','name','spouse','type','max','due','msg'];
+        var qs = keep.map(function(k) { return sp.has(k) ? k+'='+encodeURIComponent(sp.get(k)) : ''; }).filter(Boolean).join('&');
+        if (qs) btn.href = 'rsvp.html?' + qs;
+      }
+    }
+  })();
+
   // â”€â”€ Click-to-Reveal â”€â”€
   (function() {
     const overlay = document.getElementById('intro-overlay');

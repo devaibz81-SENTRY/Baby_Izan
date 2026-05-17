@@ -1282,15 +1282,6 @@
   </footer>
 
   <script>
-    // Legacy link handling:
-    // If someone lands directly on /rsvp with a guest id, send them to intro card first.
-    const entryUrl = new URL(window.location.href);
-    const entryParams = new URLSearchParams(entryUrl.search);
-    if (entryParams.get('id') && entryParams.get('opened') !== '1') {
-      const redirectUrl = new URL('index.html', entryUrl);
-      redirectUrl.search = entryParams.toString();
-      window.location.replace(redirectUrl.toString());
-    }
     // Force scroll to top on reload
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
@@ -1622,15 +1613,14 @@
         throw error;
       }
       
-      // Also post message to Google Sheets
+      // Also save message to Convex
       const guestName = `${payload.first_name} ${payload.last_name}`;
       if (payload.message) {
-        fetch(`${APPS_SCRIPT_URL}?sheet=Messages`, {
+        fetch(`${CONVEX_HTTP_URL}/api/messages`, {
           method: 'POST',
-          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name: guestName, content: payload.message })
-        }).catch((e) => console.log('Messages log err:', e));
+        }).catch((e) => console.log('Message save err:', e));
       }
       
       return parsed ?? {};

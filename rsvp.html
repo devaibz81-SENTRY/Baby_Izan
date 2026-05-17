@@ -446,22 +446,24 @@
     .btn-submit {
       width: 100%;
       padding: 1.2rem;
-      background: var(--gold);
+      background: var(--black);
       color: var(--white);
-      border: 1px solid var(--gold);
+      border: 2px solid var(--black);
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
+      font-size: 0.85rem;
+      font-weight: 800;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       cursor: pointer;
       transition: background 0.3s, transform 0.2s;
       margin-top: 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
     .btn-submit:hover {
-      background: #a8863a;
+      background: #2a2a2a;
       transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
     .btn-submit:disabled {
@@ -848,11 +850,12 @@
       .btn-submit {
         width: 100%;
         padding: 1rem 0.8rem;
-        font-size: 0.72rem;
+        font-size: 0.78rem;
         letter-spacing: 0.14em;
-        background: var(--gold);
+        background: var(--black);
         color: var(--white);
-        border: 1px solid var(--gold);
+        border: 2px solid var(--black);
+        font-weight: 800;
       }
 
       .confirm-actions {
@@ -1182,6 +1185,14 @@
         </div>
       </div>
 
+      <!-- SUBMIT -->
+      <div class="submit-wrap">
+        <button type="button" class="btn-submit" id="submit-btn" onclick="submitRSVP()">
+          Send My RSVP
+        </button>
+        <p class="submit-note" style="color:var(--black)">Your response will be shared with Jess &amp; Adriel.</p>
+      </div>
+
       <!-- 4. GIFT CARD -->
       <div class="form-section advanced-section" id="gift-section">
         <div class="form-section-title"><span>05</span> Don't Know What to Bring?</div>
@@ -1205,16 +1216,16 @@
 
 
           <div style="background:#f8f6f2;padding:1.5rem;border-radius:8px;text-align:left;margin-bottom:1.5rem;">
-            <div style="margin-bottom:1.2rem;">
-              <label style="display:block;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#888;margin-bottom:0.4rem;">Account Name</label>
+            <div style="margin-bottom:1.2rem;cursor:pointer;" onclick="copyField('Jessica Hidalgo','copy-name-hint')">
+              <label style="display:flex;justify-content:space-between;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#888;margin-bottom:0.4rem;">Account Name <span id="copy-name-hint" style="color:#bbb;font-weight:600;">(TAP TO COPY)</span></label>
               <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--black);">Jessica Hidalgo</div>
             </div>
-            <div style="margin-bottom:1.2rem;">
-              <label style="display:block;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#888;margin-bottom:0.4rem;">Bank</label>
+            <div style="margin-bottom:1.2rem;cursor:pointer;" onclick="copyField('Atlantic Bank','copy-bank-hint')">
+              <label style="display:flex;justify-content:space-between;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#888;margin-bottom:0.4rem;">Bank <span id="copy-bank-hint" style="color:#bbb;font-weight:600;">(TAP TO COPY)</span></label>
               <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--black);">Atlantic Bank</div>
             </div>
-            <div>
-              <label style="display:block;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#888;margin-bottom:0.4rem;">Account Number</label>
+            <div style="cursor:pointer;" onclick="copyField('2110076002','copy-num-hint')">
+              <label style="display:flex;justify-content:space-between;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#888;margin-bottom:0.4rem;">Account Number <span id="copy-num-hint" style="color:#bbb;font-weight:600;">(TAP TO COPY)</span></label>
               <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--black);letter-spacing:0.05em;">2110076002</div>
             </div>
           </div>
@@ -1223,13 +1234,6 @@
         </div>
       </div>
 
-      <!-- SUBMIT -->
-      <div class="submit-wrap">
-        <button type="button" class="btn-submit" id="submit-btn" onclick="submitRSVP()">
-          Send My RSVP
-        </button>
-        <p class="submit-note" style="color:var(--black)">Your response will be shared with Jess &amp; Adriel.</p>
-      </div>
     </div>
 
     <!-- SUCCESS STATE -->
@@ -1456,6 +1460,13 @@
       navigator.clipboard.writeText(text).then(() => {
         const hint = document.getElementById(hintId);
         if (hint) { hint.textContent = 'Copied!'; hint.style.color = '#2ecc71'; setTimeout(() => { hint.textContent = '(TAP TO COPY)'; hint.style.color = '#bbb'; }, 1500); }
+      });
+    }
+
+    function copyField(text, hintId) {
+      navigator.clipboard.writeText(text).then(() => {
+        const hint = document.getElementById(hintId);
+        if (hint) { const orig = hint.textContent; hint.textContent = 'Copied!'; setTimeout(() => { hint.textContent = orig; }, 1200); }
       });
     }
 

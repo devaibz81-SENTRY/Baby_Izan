@@ -1892,17 +1892,26 @@
       ctx.font = '400 16px "Cormorant Garamond", Georgia, serif';
       ctx.fillText('Jess & Adriel Waight', lx, 518);
 
-      // === GUEST NAME ===
+      // === GUEST NAME(S) ===
       const guestNames = Array.isArray(card.guestNames) && card.guestNames.length ? card.guestNames : [card.fullName];
-      const displayName = guestNames[0] || card.fullName;
+      const typeLabel = (card.guestType === 'couple' ? 'Couple' : card.guestType === 'family' ? 'Family' : 'Parent') + ' Invited';
+
+      let displayLine = '';
+      if (card.guestType === 'single' || guestNames.length === 1) {
+        displayLine = guestNames[0] || card.fullName;
+      } else if (card.guestType === 'couple' && guestNames.length >= 2) {
+        displayLine = guestNames[0] + ' & ' + guestNames[1];
+      } else {
+        displayLine = guestNames[0] + ' & Family';
+      }
 
       ctx.fillStyle = 'rgba(255,255,255,0.35)';
       ctx.font = '400 15px Montserrat, sans-serif';
-      ctx.fillText('INVITED GUEST', lx, 570);
+      ctx.fillText(typeLabel, lx, 570);
 
       ctx.fillStyle = '#ffffff';
       ctx.font = '500 46px "Great Vibes", "Times New Roman", serif';
-      ctx.fillText(fitText(ctx, displayName, rw - 40), lx, 625);
+      ctx.fillText(fitText(ctx, displayLine, rw - 40), lx, 625);
 
       // Attendance pill
       const statusMap = {
@@ -2051,6 +2060,11 @@
       document.querySelector('.rsvp-container').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
+
+  <!-- subtle brand footer -->
+  <div style="text-align:center;padding:2rem 1rem 3rem;font-size:0.65rem;color:rgba(26,26,26,0.3);letter-spacing:0.08em;">
+    <span style="cursor:pointer;" onclick="window.open('https://wa.me/5016332821?text='+encodeURIComponent('Good day, I was referred by Jess and Adriel for your service. I would like to inquire about booking a virtual RSVP invite for my event.'),'_blank')">RSVP Virtual Invite? Book your date now →</span>
+  </div>
 </body>
 
 </html>

@@ -1,16 +1,26 @@
-node_modules/
-.convex/
-*.b64.txt
-cute James P. Sullivan.jpg
-James P. Sullivan furr bg.jpg
-party decor James P. Sullivan.jpeg
-ultrasound image 1.png
-ultrasound image 2.png
+# Build / dev tools
+build_html.ps1
 encode_images.ps1
-png-clipart-infant-boy-baby-transport-pram-baby-blue-child-thumbnail.png
-pngtree-baby-boy-sticker-png-image_6526916.png
+
+# Source images & vectors
+*.jpg
+*.jpeg
+*.png
+*.b64.txt
 vsctors/
 new pages/
-convex/_generated/
-*.log
 
+# Convex backend (deployed separately)
+convex/
+convex.json
+package.json
+package-lock.json
+node_modules/
+.convex/
+convex/_generated/
+
+# SVG source files (embedded inline in index.html)
+*.svg
+
+# Misc
+*.log

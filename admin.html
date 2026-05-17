@@ -392,6 +392,18 @@
       font-size: 0.65rem;
     }
 
+    .action-btn.wa {
+      border-color: #25D366;
+      color: #25D366;
+      font-weight: 600;
+      min-width: 96px;
+    }
+
+    .action-btn.wa:hover {
+      background: #25D366;
+      color: white;
+    }
+
     .action-btn.danger {
       border-color: #e74c3c;
       color: #e74c3c;
@@ -877,6 +889,7 @@
         const pClass = { attending: 'pill-attending', declined: 'pill-declined', later: 'pill-later', invited: 'pill-invited' }[st];
         const pLabel = { attending: 'Yes', declined: 'No', later: 'Ask Later', invited: 'Invited' }[st];
         const key = getGuestKey(g);
+        const hasPhone = !!normalizePhone(g.phone);
 
         let displayName = `<strong>${g.first_name}${g.spouse_name ? ' & ' + g.spouse_name : ''} ${g.last_name}</strong>`;
 
@@ -889,6 +902,7 @@
           <td style="font-size:0.75rem">${g.deadline ? new Date(g.deadline).toLocaleDateString() : '-'}</td>
           <td><div class="table-actions">
             <button class="action-btn" onclick="openEditGuest('${key}')" style="border-color:var(--gold);color:var(--gold);">Edit</button>
+            ${hasPhone ? `<button class="action-btn wa" onclick="sendWhatsApp('${key}')">WhatsApp</button>` : ''}
             <button class="action-btn danger" onclick="deleteGuest('${key}')">Delete</button>
           </div></td>
         </tr>`;
@@ -976,6 +990,49 @@
 
     function findGuestByKey(key) {
       return guests.find(g => getGuestKey(g) === key);
+    }
+
+    function normalizePhone(p) {
+      return String(p || '').replace(/[^\d]/g, '');
+    }
+
+    function guestLink(g) {
+      const base = 'https://baby-izan.vercel.app';
+      if (!g || !g.first_name) return base;
+      const p = new URLSearchParams({
+        id: g._id || g.id || '',
+        name: `${g.first_name} ${g.last_name || ''}`.trim(),
+        spouse: g.spouse_name || '',
+        type: g.guest_type || 'single',
+        max: g.max_party || 1,
+        due: g.deadline || ''
+      });
+      return `${base}/?${p.toString()}`;
+    }
+
+    function whatsappText(g) {
+      const name = g.first_name + (g.spouse_name ? ' & ' + g.spouse_name : '');
+      const type = (g.guest_type === 'couple' ? 'couple' : g.guest_type === 'family' ? 'family' : 'single') + ' invitation';
+      const deadline = g.deadline ? new Date(g.deadline).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'June 10, 2026';
+      return `Hi ${name},
+
+You are cordially invited to the baby shower of Izan Theodore Waight.
+
+We have reserved your RSVP as a ${type}. Kindly reply by ${deadline}.
+
+Open your invitation and respond here:
+${guestLink(g)}
+
+With love,
+Jess & Adriel`;
+    }
+
+    function sendWhatsApp(key) {
+      const g = findGuestByKey(key);
+      if (!g) { alert('Guest not found.'); return; }
+      const phone = normalizePhone(g.phone);
+      if (!phone) { alert('No valid phone number.'); return; }
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(whatsappText(g))}`, '_blank');
     }
 
     async function deleteGuest(key) {

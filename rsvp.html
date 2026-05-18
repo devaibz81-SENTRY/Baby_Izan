@@ -420,6 +420,64 @@
       opacity: 0.8;
     }
 
+    /* ????????? GUEST TYPE SELECTOR (walk-in) ????????? */
+    .guest-type-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+    }
+
+    .guest-type-option {
+      position: relative;
+    }
+
+    .guest-type-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+    }
+
+    .guest-type-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 90px;
+      padding: 0.9rem 0.6rem;
+      border: 1px solid var(--gold-border);
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--black);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .guest-type-label:hover {
+      border-color: var(--gold);
+      background: rgba(201, 168, 76, 0.05);
+    }
+
+    .guest-type-option input:checked + .guest-type-label {
+      border-color: var(--gold);
+      background: rgba(201, 168, 76, 0.1);
+      box-shadow: 0 0 12px rgba(201, 168, 76, 0.1);
+    }
+
+    .gt-icon {
+      margin-bottom: 0.4rem;
+    }
+    .gt-icon svg { stroke: var(--black); }
+    .guest-type-option input:checked + .guest-type-label .gt-icon svg { stroke: var(--gold); }
+
+    .gt-text {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
     /* ????????? PARTY MEMBERS ????????? */
     .party-member {
       background: rgba(201, 168, 76, 0.05);
@@ -880,7 +938,8 @@
         grid-template-columns: 1fr
       }
 
-      .attendance-grid {
+      .attendance-grid,
+      .guest-type-grid {
         grid-template-columns: 1fr
       }
     }
@@ -1170,15 +1229,59 @@
         </div>
       </div>
 
-      <!-- 3. PARTY MEMBERS (couple / family) -->
+      <!-- 3. GUEST TYPE (walk-in / no id) -->
+      <div class="form-section" id="guest-type-section" style="display:none">
+        <div class="form-section-title"><span>03</span> Your Party Size</div>
+        <div class="guest-type-grid">
+          <div class="guest-type-option">
+            <input type="radio" name="guest-type" id="gt-single" value="single" checked onchange="onGuestTypeChange()" />
+            <label class="guest-type-label" for="gt-single">
+              <span class="gt-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--black)" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/></svg>
+              </span>
+              <span class="gt-text">Just Me</span>
+            </label>
+          </div>
+          <div class="guest-type-option">
+            <input type="radio" name="guest-type" id="gt-couple" value="couple" onchange="onGuestTypeChange()" />
+            <label class="guest-type-label" for="gt-couple">
+              <span class="gt-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--black)" stroke-width="1.5"><circle cx="7" cy="8" r="3.5"/><circle cx="17" cy="8" r="3.5"/><path d="M3 21v-1.5a4 4 0 0 1 4-4h1.5M21 21v-1.5a4 4 0 0 0-4-4h-1.5"/></svg>
+              </span>
+              <span class="gt-text">Me + Partner</span>
+            </label>
+          </div>
+          <div class="guest-type-option">
+            <input type="radio" name="guest-type" id="gt-family" value="family" onchange="onGuestTypeChange()" />
+            <label class="guest-type-label" for="gt-family">
+              <span class="gt-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--black)" stroke-width="1.5"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="8" r="3"/><path d="M3 21v-2a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v2"/><path d="M17 13h4a2 2 0 0 1 2 2v1"/></svg>
+              </span>
+              <span class="gt-text">Me + Family</span>
+            </label>
+          </div>
+        </div>
+        <div id="family-size-wrap" style="display:none;margin-top:1rem;">
+          <div class="form-group">
+            <label for="family-size">Total number of people (including you)</label>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <button type="button" onclick="adjFamily(-1)" style="width:36px;height:36px;border:1px solid var(--gold);background:var(--ivory);border-radius:50%;font-size:1.2rem;cursor:pointer;color:var(--black);display:flex;align-items:center;justify-content:center;">-</button>
+              <input type="number" id="family-size" value="3" min="2" max="10" style="width:60px;text-align:center;padding:0.5rem;border:1px solid rgba(201,168,76,0.3);border-radius:4px;font-size:1rem;font-family:'Montserrat',sans-serif;" onchange="onGuestTypeChange()" />
+              <button type="button" onclick="adjFamily(1)" style="width:36px;height:36px;border:1px solid var(--gold);background:var(--ivory);border-radius:50%;font-size:1.2rem;cursor:pointer;color:var(--black);display:flex;align-items:center;justify-content:center;">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. PARTY MEMBERS (couple / family) -->
       <div class="form-section" id="party-section" style="display:none">
-        <div class="form-section-title"><span>03</span> Your Party</div>
+        <div class="form-section-title"><span>04</span> Your Party</div>
         <div id="party-members-list"></div>
       </div>
 
-      <!-- 3. MESSAGE -->
+      <!-- 5. MESSAGE -->
       <div class="form-section advanced-section" id="message-section">
-        <div class="form-section-title"><span>04</span> Leave Us a Message</div>
+        <div class="form-section-title"><span>05</span> Leave Us a Message</div>
         <div class="form-group">
           <label for="message">Words of Wisdom, Congratulations, or Well Wishes</label>
           <textarea id="message" placeholder="Share your love, advice, or wishes for Jess & Adriel and baby Izan..."></textarea>
@@ -1195,7 +1298,7 @@
 
       <!-- 4. GIFT CARD -->
       <div class="form-section advanced-section" id="gift-section">
-        <div class="form-section-title"><span>05</span> Don't Know What to Bring?</div>
+        <div class="form-section-title"><span>06</span> Don't Know What to Bring?</div>
         <div class="form-row single" style="margin-bottom:1.5rem">
           <div class="form-group">
             <p style="font-size:0.85rem;line-height:1.7;color:rgba(26,26,26,0.7);margin-bottom:1.2rem;">
@@ -1323,8 +1426,8 @@
     const GUEST_ID = getParam('id');
     const GUEST_NAME = getParam('name');
     const GUEST_SPOUSE = getParam('spouse');
-    const GUEST_TYPE = getParam('type') || 'single';   // single | couple | family
-    const MAX_PARTY = parseInt(getParam('max') || '1', 10);
+    let GUEST_TYPE = getParam('type') || 'single';   // single | couple | family
+    let MAX_PARTY = parseInt(getParam('max') || '1', 10);
     const DEADLINE = getParam('due') || '2026-06-10';
     const PERS_NOTE = getParam('msg') || '';
     const EVENT_DATE_TEXT = 'Saturday, June 13, 2026';
@@ -1369,6 +1472,12 @@
         noteEl.style.display = 'block';
       }
 
+      // Show guest type selector for walk-ins (no GUEST_ID)
+      if (!GUEST_ID) {
+        const gtSection = document.getElementById('guest-type-section');
+        if (gtSection) gtSection.style.display = 'block';
+      }
+
       buildPartySection();
     });
 
@@ -1404,8 +1513,35 @@
           </div>`;
       }
     }
+    // ????????? Guest type change (walk-in) ??????????????????????????????????????????????????????????????????????????????
+    function onGuestTypeChange() {
+      const val = document.querySelector('input[name="guest-type"]:checked')?.value || 'single';
+      GUEST_TYPE = val;
+      if (val === 'single') {
+        MAX_PARTY = 1;
+        document.getElementById('family-size-wrap').style.display = 'none';
+      } else if (val === 'couple') {
+        MAX_PARTY = 2;
+        document.getElementById('family-size-wrap').style.display = 'none';
+      } else if (val === 'family') {
+        const size = parseInt(document.getElementById('family-size')?.value || '3', 10);
+        MAX_PARTY = Math.max(2, Math.min(10, size));
+        document.getElementById('family-size-wrap').style.display = 'block';
+      }
+      buildPartySection();
+      onAttendanceChange();
+    }
 
-
+    function adjFamily(delta) {
+      const inp = document.getElementById('family-size');
+      if (!inp) return;
+      let v = parseInt(inp.value || '3', 10) + delta;
+      v = Math.max(2, Math.min(10, v));
+      inp.value = v;
+      MAX_PARTY = v;
+      buildPartySection();
+      onAttendanceChange();
+    }
 
     // ????????? Attendance change ????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
     // Number pad functions
@@ -1454,6 +1590,10 @@
       const val = document.querySelector('input[name="attendance"]:checked')?.value;
       const showFull = val === 'attending';
       document.getElementById('party-section').style.display = (showFull && GUEST_TYPE !== 'single' && MAX_PARTY > 1) ? 'block' : 'none';
+      // Show guest-type-section only when attending (for walk-ins)
+      if (!GUEST_ID) {
+        document.getElementById('guest-type-section').style.display = showFull ? 'block' : 'none';
+      }
     }
 
     function copyGiftField(text, hintId) {

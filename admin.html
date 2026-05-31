@@ -912,7 +912,7 @@
           <ol style="padding-left:1.2rem;font-size:0.8rem;color:#444;line-height:2;">
             <li><strong>Always create guests here first,</strong> then use the WhatsApp button to send their personalised link. This ensures the <code>id</code> parameter is in the URL.</li>
             <li><strong>Set <code>max_party</code> correctly:</strong> 1 for single, 2 for couple, the actual headcount for family.</li>
-            <li><strong>Set a deadline</strong> (default is June 10, 2026 — 3 days before the event).</li>
+            <li><strong>Set a deadline</strong> (default is June 17, 2026 — 3 days before the event).</li>
             <li><strong>Check the Not Responded filter</strong> regularly to see who hasn't replied and follow up.</li>
             <li><strong>"Ask Again Later"</strong> submits immediately with no party details required — the guest just wants a reminder closer to the date.</li>
             <li><strong>Messages</strong> from guests go to the Messages inbox, separate from the RSVP data.</li>
@@ -1353,7 +1353,7 @@
     function whatsappText(g) {
       const name = g.first_name + (g.spouse_name ? ' & ' + g.spouse_name : '');
       const type = (g.guest_type === 'couple' ? 'couple' : g.guest_type === 'family' ? 'family' : 'single') + ' invitation';
-      const deadline = g.deadline ? new Date(g.deadline).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'June 10, 2026';
+      const deadline = g.deadline ? new Date(g.deadline).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'June 17, 2026';
       return `Hi ${name},
 
 You are cordially invited to the baby shower of Aizen Theodore Waight.

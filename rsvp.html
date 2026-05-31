@@ -1112,6 +1112,14 @@
       font-style: italic;
     }
 
+  /* ── Tap Interactivity ── */
+  .tap-pop{animation:tapPop .35s cubic-bezier(.22,1,.36,1)!important}
+  .tap-squish{animation:tapSquish .4s cubic-bezier(.22,1,.36,1)!important}
+  .tap-wobble{animation:tapWobble .4s cubic-bezier(.22,1,.36,1)!important}
+  @keyframes tapPop{0%{transform:scale(1)}35%{transform:scale(1.22)}70%{transform:scale(.92)}100%{transform:scale(1)}}
+  @keyframes tapSquish{0%{transform:scale(1)}25%{transform:scaleX(1.3) scaleY(.75)}50%{transform:scaleX(.85) scaleY(1.15)}75%{transform:scaleX(1.06) scaleY(.95)}100%{transform:scale(1)}}
+  @keyframes tapWobble{0%{transform:rotate(0)}20%{transform:rotate(-10deg)}40%{transform:rotate(7deg)}60%{transform:rotate(-5deg)}80%{transform:rotate(2deg)}100%{transform:rotate(0)}}
+  @media(prefers-reduced-motion:reduce){.tap-pop,.tap-squish,.tap-wobble{animation:none!important}}
   </style>
 </head>
 
@@ -1387,7 +1395,7 @@
 
   <footer
     style="background:var(--cream);color:var(--black);text-align:center;padding:2rem;font-size:0.6rem;letter-spacing:0.2em;opacity:0.8;">
-    Jess &amp; Adriel Waight - June 13, 2026 - Baby Shower Aizen Theodore Waight
+    Jess &amp; Adriel Waight - June 20, 2026 - Baby Shower Aizen Theodore Waight
   </footer>
 
   <script>
@@ -1428,9 +1436,9 @@
     const GUEST_SPOUSE = getParam('spouse');
     let GUEST_TYPE = getParam('type') || 'single';   // single | couple | family
     let MAX_PARTY = parseInt(getParam('max') || '1', 10);
-    const DEADLINE = getParam('due') || '2026-06-10';
+    const DEADLINE = getParam('due') || '2026-06-17';
     const PERS_NOTE = getParam('msg') || '';
-    const EVENT_DATE_TEXT = 'Saturday, June 13, 2026';
+    const EVENT_DATE_TEXT = 'Saturday, June 20, 2026';
     const EVENT_LOCATION_TEXT = 'Belmopan, Maya Mopan';
     const COUPLE_NAMES = 'Jess & Adriel';
     let lastSubmittedCardData = null;
@@ -1986,7 +1994,7 @@
       // Event details
       ctx.fillStyle = '#c9a84c';
       ctx.font = '600 18px Montserrat, sans-serif';
-      ctx.fillText('Saturday, June 13, 2026', lx, 410);
+      ctx.fillText('Saturday, June 20, 2026', lx, 410);
       ctx.fillText('1:00 PM \u2013 5:00 PM', lx, 442);
       ctx.fillText('Belmopan, Maya Mopan', lx, 474);
 
@@ -2110,7 +2118,7 @@
       // Bottom right baby shower branding
       ctx.fillStyle = 'rgba(201,168,76,0.5)';
       ctx.font = '400 14px "Cormorant Garamond", Georgia, serif';
-      ctx.fillText('Baby Aizen Theodore Waight \u2022 June 13, 2026', w - 380, barY + 38);
+      ctx.fillText('Baby Aizen Theodore Waight \u2022 June 20, 2026', w - 380, barY + 38);
 
       return canvas;
     }
@@ -2162,6 +2170,18 @@
       // Scroll to form
       document.querySelector('.rsvp-container').scrollIntoView({ behavior: 'smooth' });
     }
+  // ── Tap Interactivity ──
+  (function(){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var anims=['tap-pop','tap-squish','tap-wobble'];
+    document.addEventListener('click',function(e){
+      var t=e.target.closest('.proof-card,.proof-preview,.rsvp-hero svg,.gift-toggle,.gift-details,.bank-field,.form-section h3,.footer-brand,[data-tap]');
+      if(!t||t.closest('a,button,input,select,textarea')) return;
+      var a=anims[Math.floor(Math.random()*anims.length)];
+      t.classList.add(a);
+      t.addEventListener('animationend',function(){t.classList.remove(a);},{once:true});
+    });
+  })();
   </script>
 
   <!-- subtle brand footer -->

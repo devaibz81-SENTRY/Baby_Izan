@@ -730,21 +730,11 @@
     }
 
   /* ── Tap Interactivity ── */
-  .tap-pop{animation:tapPop .35s cubic-bezier(.22,1,.36,1)!important}
-  .tap-squish{animation:tapSquish .4s cubic-bezier(.22,1,.36,1)!important}
-  .tap-wobble{animation:tapWobble .4s cubic-bezier(.22,1,.36,1)!important}
-  .tap-sparkle{animation:tapSparkle .5s ease-out!important;will-change:filter}
-  @keyframes tapPop{0%{transform:scale(1)}35%{transform:scale(1.22)}70%{transform:scale(.92)}100%{transform:scale(1)}}
-  @keyframes tapSquish{0%{transform:scale(1)}25%{transform:scaleX(1.3) scaleY(.75)}50%{transform:scaleX(.85) scaleY(1.15)}75%{transform:scaleX(1.06) scaleY(.95)}100%{transform:scale(1)}}
-  @keyframes tapWobble{0%{transform:rotate(0)}20%{transform:rotate(-10deg)}40%{transform:rotate(7deg)}60%{transform:rotate(-5deg)}80%{transform:rotate(2deg)}100%{transform:rotate(0)}}
-  @keyframes tapSparkle{0%{filter:brightness(1) drop-shadow(0 0 0 rgba(201,168,76,0))}30%{filter:brightness(1.45) drop-shadow(0 0 16px rgba(201,168,76,.7))}70%{filter:brightness(1.15) drop-shadow(0 0 6px rgba(201,168,76,.3))}100%{filter:brightness(1) drop-shadow(0 0 0 rgba(201,168,76,0))}}
-  /* ── First-time Scroll Reveal ── */
-  .reveal-scroll{opacity:0;transform:translateY(35px);will-change:opacity,transform;transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
-  .reveal-scroll.revealed{opacity:1;transform:translateY(0)}
-  .reveal-scroll[data-delay="1"]{transition-delay:.15s}
-  .reveal-scroll[data-delay="2"]{transition-delay:.3s}
-  @media(prefers-reduced-motion:reduce){.reveal-scroll{opacity:1!important;transform:none!important;transition:none!important}}
-  @media(prefers-reduced-motion:reduce){.tap-pop,.tap-squish,.tap-wobble,.tap-sparkle{animation:none!important}}
+  .tap-pop{animation:tapPop .25s cubic-bezier(.22,1,.36,1)!important}
+  .tap-squish{animation:tapSquish .3s cubic-bezier(.22,1,.36,1)!important}
+  @keyframes tapPop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+  @keyframes tapSquish{0%{transform:scale(1)}30%{transform:scaleX(1.08) scaleY(.92)}60%{transform:scaleX(.96) scaleY(1.02)}100%{transform:scale(1)}}
+  @media(prefers-reduced-motion:reduce){.tap-pop,.tap-squish{animation:none!important}}
   </style>
 </head>
 
@@ -1436,9 +1426,9 @@ Jess & Adriel`;
     // ── Tap Interactivity ──
     (function(){
       if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var anims=['tap-pop','tap-squish','tap-wobble','tap-sparkle'];
+      var anims=['tap-pop','tap-squish'];
       document.addEventListener('click',function(e){
-        var t=e.target.closest('img,.stat-card,.guest-card,.sidebar-item,.login-box,.walkin-card,.section-header h2,.section-header,.message-card,.brand-name,.table-actions,.action-btn,.table-shell,.guest-count,.sync-dot,[data-tap]');
+        var t=e.target.closest('img,.stat-card,.login-box,.walkin-card,.message-card,[data-tap]');
         if(!t||t.closest('a,button,input,select,textarea')) return;
         var a=anims[Math.floor(Math.random()*anims.length)];
         t.classList.add(a);

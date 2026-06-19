@@ -173,6 +173,17 @@
   .reveal-scroll[data-delay="2"]{transition-delay:.3s}
   .reveal-scroll[data-delay="3"]{transition-delay:.45s}
 
+  /* â”€â”€ Postponed Overlay â”€â”€ */
+  .postponed-overlay{position:fixed;inset:0;z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);text-align:center;padding:1rem;will-change:transform,opacity;transition:transform 0.8s cubic-bezier(0.22,1,0.36,1),opacity 0.8s ease}
+  .postponed-overlay.hidden{transform:scale(1.1);opacity:0;pointer-events:none}
+  .postponed-card{background:var(--cream);border:3px solid var(--gold);border-radius:24px;padding:3rem 2rem;max-width:500px;box-shadow:0 10px 40px rgba(201,168,76,0.3);position:relative;overflow:hidden}
+  .postponed-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,3rem);font-weight:700;color:var(--gold);line-height:1.2;margin-bottom:1rem}
+  .postponed-text{font-size:1.1rem;color:var(--dark);line-height:1.6;margin-bottom:1.5rem;font-family:'Montserrat',sans-serif}
+  .postponed-icon{width:90px;height:90px;margin:0 auto 1.5rem;animation:floatBaby 3s ease-in-out infinite}
+  .postponed-icon svg{width:100%;height:100%;display:block}
+  .close-postponed{display:inline-block;padding:0.8rem 2.4rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#fff;border:none;border-radius:50px;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
+  .close-postponed:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(201,168,76,0.5)}
+
   /* â”€â”€ Subtle Tap Interactivity â”€â”€ */
   .tap-pop{animation:tapPop .25s cubic-bezier(.22,1,.36,1)!important}
   .tap-squish{animation:tapSquish .3s cubic-bezier(.22,1,.36,1)!important}
@@ -229,6 +240,21 @@
     <span class="intro-loading-txt">baby boy loading</span>
   </div>
   <p class="tap-hint" id="tap-hint"><svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 0l1.5 8.5L22 10l-8.5 1.5L12 20l-1.5-8.5L2 10l8.5-1.5z"/></svg> tap to reveal <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" style="vertical-align:middle;margin-left:4px"><path d="M12 0l1.5 8.5L22 10l-8.5 1.5L12 20l-1.5-8.5L2 10l8.5-1.5z"/></svg></p>
+</div>
+
+<!-- â”€â”€ Postponed Overlay â”€â”€ -->
+<div class="postponed-overlay hidden" id="postponed-overlay">
+  <div class="postponed-card">
+    <div class="postponed-icon">
+      <svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 2c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 3c1.1 0 2 .9 2 2 0 .74-.4 1.39-1 1.73V13h-2v-2.27c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2z"/></svg>
+    </div>
+    <h2 class="postponed-title">Event Postponed!</h2>
+    <p class="postponed-text">
+      <strong>We are waiting on the baby!</strong><br><br>
+      The little one might be here sooner than expected, so we are postponing the baby shower for now. We will keep you updated with a new date soon!
+    </p>
+    <button class="close-postponed" id="close-postponed-btn">View Invitation Anyway</button>
+  </div>
 </div>
 
 <!-- â”€â”€ SECTION 1: HERO â”€â”€ -->
@@ -634,7 +660,24 @@
     overlay.addEventListener('click', function onClick() {
       overlay.removeEventListener('click', onClick);
       overlay.classList.add('hidden');
-      document.body.style.overflow = 'auto';
+      
+      const postponed = document.getElementById('postponed-overlay');
+      const closeBtn = document.getElementById('close-postponed-btn');
+
+      setTimeout(() => {
+        if (postponed) {
+          postponed.classList.remove('hidden');
+        } else {
+          document.body.style.overflow = 'auto';
+        }
+      }, 600);
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          postponed.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+        });
+      }
 
       setTimeout(() => {
         heading?.classList.add('revealed');
